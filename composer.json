@@ -1,0 +1,21 @@
+{
+  "name": "Osom/Sdk_Mws",
+  "description": "Standar Developer Kit for MWS",
+  "license": "MIT",
+  "keywords": ["sdk_mws"],
+  "authors": [
+    {
+      "name": "Octavio Perez",
+      "email": "octavio.perez@osom.com"
+    }
+  ],
+  "require": {},
+  "require-dev": {
+    "phpunit/phpunit": "4.0.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Osom\\Sdk_Mws\\": "src"
+    }
+  }
+}
