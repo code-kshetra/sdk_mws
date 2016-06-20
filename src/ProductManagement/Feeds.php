@@ -50,56 +50,8 @@ class Feeds
         $this->marketplaceIdArray = array("Id" => array('A1AM78C64UM0Y8'));
     }
     
-    public function createRequestFeed(){
-        $feed = <<<EOD
-        <?xml version="1.0" ?>
-        <AmazonEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="amznenvelope.xsd">
-            <Header>
-                <DocumentVersion>1.01</DocumentVersion>
-                <MerchantIdentifier>A140MHXDLIVF48</MerchantIdentifier>
-        </Header>
-        <MessageType>Product</MessageType>
-        <PurgeAndReplace>true</PurgeAndReplace>
-        <Message>
-        <MessageID>1</MessageID>
-        <OperationType>Update</OperationType>
-        <Product>
-        <SKU>AR014SH25GJEDFMX-425379</SKU>
-        <ProductTaxCode>A_GEN_TAX</ProductTaxCode>
-        <LaunchDate>2015-10-15T11:44:14</LaunchDate>
-        <DescriptionData>
-        <Title>Top Sider Azul</Title>
-        <Brand>Aretina</Brand> 
-        <Description>Top Sider Azul</Description>
-        <BulletPoint>made in Italy</BulletPoint>
-        <BulletPoint>500 thread count</BulletPoint>
-        <BulletPoint>plain weave (percale)</BulletPoint>
-        <BulletPoint>100% Egyptian cotton</BulletPoint>
-        <Manufacturer>Peacock Alley</Manufacturer>
-        <SearchTerms>bedding</SearchTerms>
-        <SearchTerms>Sheets</SearchTerms>
-        <ItemType>flat-sheets</ItemType>
-        <IsGiftWrapAvailable>false</IsGiftWrapAvailable>
-        <IsGiftMessageAvailable>false</IsGiftMessageAvailable>
-         <RecommendedBrowseNode>60583031</RecommendedBrowseNode>
-         <RecommendedBrowseNode>60576021</RecommendedBrowseNode>
-        </DescriptionData>
-        <ProductData>
-        <Clothing>
-        <Parentage>variation-parent</Parentage>
-        <VariationData>
-        <VariationTheme>Size-Color</VariationTheme>
-        </VariationData>
-        <Material>cotton</Material>
-        <ThreadCount>500</ThreadCount>
-        </Clothing>
-        </ProductData>
-        </Product>
-        </Message>
-        <Message>
-        </AmazonEnvelope>
-EOD;
-
+    public function createRequestFeed($feed, $feedType){
+        
         $feedHandle = @fopen('php://memory', 'rw+');
         fwrite($feedHandle, $feed);
         rewind($feedHandle);
@@ -107,12 +59,11 @@ EOD;
         $request = new MarketplaceWebService_Model_SubmitFeedRequest();
         $request->setMerchant(MERCHANT_ID);
         $request->setMarketplaceIdList($this->marketplaceIdArray);
-        $request->setFeedType('_POST_PRODUCT_DATA_');
+        $request->setFeedType($feedType);
         $request->setContentMd5(base64_encode(md5(stream_get_contents($feedHandle), true)));
         rewind($feedHandle);
         $request->setPurgeAndReplace(false);
         $request->setFeedContent($feedHandle);
-        //$request->setMWSAuthToken('<MWS Auth Token>'); // Optional
 
         rewind($feedHandle);
         $response = $this->invokeSubmitFeed($this->service, $request);
