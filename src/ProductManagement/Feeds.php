@@ -8,11 +8,19 @@
 
 namespace Osom\Sdk_Mws\ProductManagement;
 
-include_once ('src/.config.php');
-include_once ('src/MarketplaceWebService/Client.php');
+
+include_once ('./src/.config.php');
+use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Client;
+use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Interface;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedRequest;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedResponse;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedResult;
+
+
 
 class Feeds
 {
+
     private $serviceUrl;
     
     private $config = [];
@@ -30,12 +38,14 @@ class Feeds
             'MaxErrorRetry' => 3
         ];
 
+
         $this->service = new MarketplaceWebService_Client(
             AWS_ACCESS_KEY_ID,
             AWS_SECRET_ACCESS_KEY,
             $this->config,
             APPLICATION_NAME,
             APPLICATION_VERSION);
+
 
         $this->marketplaceIdArray = array("Id" => array('A1AM78C64UM0Y8'));
     }
@@ -46,7 +56,7 @@ class Feeds
         <AmazonEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="amznenvelope.xsd">
             <Header>
                 <DocumentVersion>1.01</DocumentVersion>
-                <MerchantIdentifier>M_SELLER_354577</MerchantIdentifier>
+                <MerchantIdentifier>A140MHXDLIVF48</MerchantIdentifier>
         </Header>
         <MessageType>Product</MessageType>
         <PurgeAndReplace>true</PurgeAndReplace>
@@ -54,13 +64,13 @@ class Feeds
         <MessageID>1</MessageID>
         <OperationType>Update</OperationType>
         <Product>
-        <SKU>1Z-500ABR-FLAT</SKU>
+        <SKU>AR014SH25GJEDFMX-425379</SKU>
         <ProductTaxCode>A_GEN_TAX</ProductTaxCode>
-        <LaunchDate>2005-07-26T00:00:01</LaunchDate>
+        <LaunchDate>2015-10-15T11:44:14</LaunchDate>
         <DescriptionData>
-        <Title>Lyric 500 tc Queen Flat Sheet, Ivory</Title>
-        <Brand>Peacock Alley</Brand> 
-        <Description>Lyric sheeting by Peacock Alley is the epitome of simple and classic elegance. The flat sheets and pillowcases feature a double row of hemstitching. The fitted sheets fit mattresses up to 21 inches deep. The sheets are shown at left with tone on tone monogramming, please call for monogramming details and prices. Please note, gift wrapping and overnight shipping are not available for this style.</Description>
+        <Title>Top Sider Azul</Title>
+        <Brand>Aretina</Brand> 
+        <Description>Top Sider Azul</Description>
         <BulletPoint>made in Italy</BulletPoint>
         <BulletPoint>500 thread count</BulletPoint>
         <BulletPoint>plain weave (percale)</BulletPoint>
@@ -75,20 +85,21 @@ class Feeds
          <RecommendedBrowseNode>60576021</RecommendedBrowseNode>
         </DescriptionData>
         <ProductData>
-        <Home>
+        <Clothing>
         <Parentage>variation-parent</Parentage>
         <VariationData>
         <VariationTheme>Size-Color</VariationTheme>
         </VariationData>
         <Material>cotton</Material>
         <ThreadCount>500</ThreadCount>
-        </Home>
+        </Clothing>
         </ProductData>
         </Product>
         </Message>
         <Message>
         </AmazonEnvelope>
 EOD;
+
         $feedHandle = @fopen('php://memory', 'rw+');
         fwrite($feedHandle, $feed);
         rewind($feedHandle);
@@ -104,10 +115,10 @@ EOD;
         //$request->setMWSAuthToken('<MWS Auth Token>'); // Optional
 
         rewind($feedHandle);
-        $this->invokeSubmitFeed($this->service, $request);
+        $response = $this->invokeSubmitFeed($this->service, $request);
 
         @fclose($feedHandle);
-        return true;
+        return $response;
     }
     
     /**
@@ -123,6 +134,7 @@ EOD;
      */
     public function invokeSubmitFeed(MarketplaceWebService_Interface $service, $request)
     {
+        $responseVar = true;
         try {
             $response = $service->submitFeed($request);
 
@@ -187,6 +199,8 @@ EOD;
             echo("Request ID: " . $ex->getRequestId() . "\n");
             echo("XML: " . $ex->getXML() . "\n");
             echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
+            $responseVar = false;
         }
+        return$responseVar;
     }
 }

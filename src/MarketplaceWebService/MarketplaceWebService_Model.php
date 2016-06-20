@@ -18,7 +18,16 @@
 
 /**
  * MarketplaceWebService_Model - base class for all model classes
- */ 
+ */
+
+namespace Osom\Sdk_Mws\MarketplaceWebService;
+use Exception;
+use DOMElement;
+use DOMXPath;
+use DateTime;
+use DateTimeZone;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedResponse;
+
 abstract class MarketplaceWebService_Model
 {
     
@@ -167,7 +176,8 @@ abstract class MarketplaceWebService_Model
                 if ($this->isComplexType($fieldType[0])) {
                     $elements = $xpath->query("./a:$fieldName", $dom);
                     if ($elements->length >= 1) {
-                        require_once (str_replace('_', DIRECTORY_SEPARATOR, $fieldType[0]) . ".php");
+                        //require_once (str_replace('_', DIRECTORY_SEPARATOR, $fieldType[0]) . ".php");
+                        $fieldType[0] = "Osom\\Sdk_Mws\\MarketplaceWebService\\Model\\".$fieldType;
                         foreach ($elements as $element) {
                             $this->fields[$fieldName]['FieldValue'][] = new $fieldType[0]($element);
                         }
@@ -185,9 +195,10 @@ abstract class MarketplaceWebService_Model
                 if ($this->isComplexType($fieldType)) {
                     $elements = $xpath->query("./a:$fieldName", $dom);
                     if ($elements->length == 1) {
-                        require_once (str_replace('_', DIRECTORY_SEPARATOR, $fieldType) . ".php");
+                        //require_once (str_replace('_', DIRECTORY_SEPARATOR, $fieldType) . ".php");
+                        $fieldType = "Osom\\Sdk_Mws\\MarketplaceWebService\\Model\\".$fieldType;
                         $this->fields[$fieldName]['FieldValue'] = new $fieldType($elements->item(0));
-                    }   
+                    }
                 } else {
                     $element = $xpath->query("./a:$fieldName/text()", $dom);
                     $data = null;

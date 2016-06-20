@@ -1,4 +1,5 @@
 <?php
+
 /** 
  *  PHP Version 5
  *
@@ -16,12 +17,14 @@
  * 
  */
 
+namespace Osom\Sdk_Mws\MarketplaceWebService\Model;
+
 /**
  *  @see MarketplaceWebService_Model
  */
-require_once ('MarketplaceWebService/Model.php'); 
-require_once ('MarketplaceWebService/Model/ContentType.php');
-    
+//require_once ('MarketplaceWebService/MarketplaceWebService_Model.php');
+//require_once ('./src/MarketplaceWebService/Model/MarketplaceWebService_Model_ContentType.php');
+
 
 /**
  * MarketplaceWebService_Model_SubmitFeedRequest
@@ -37,7 +40,12 @@ require_once ('MarketplaceWebService/Model/ContentType.php');
  * <li>PurgeAndReplace: bool</li>
  *
  * </ul>
- */ 
+ */
+
+use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Model;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_ContentType;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_IdList;
+
 class MarketplaceWebService_Model_SubmitFeedRequest extends MarketplaceWebService_Model
 {
 

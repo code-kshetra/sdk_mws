@@ -9,6 +9,8 @@
  *  @license     http://aws.amazon.com/apache2.0  Apache License, Version 2.0
  *  @version     2009-01-01
  */
+
+namespace Osom\Sdk_Mws\MarketplaceWebService\Model;
 /******************************************************************************* 
 
 /**
@@ -29,6 +31,7 @@
 /* 
  * The only content type that MWS currently supports is octet-stream
  */
+use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Model;
 
 class MarketplaceWebService_Model_ContentType  extends MarketplaceWebService_Model {
 	

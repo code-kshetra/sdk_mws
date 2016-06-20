@@ -9,6 +9,7 @@
  *  @license     http://aws.amazon.com/apache2.0  Apache License, Version 2.0
  *  @version     2009-01-01
  */
+namespace Osom\Sdk_Mws\MarketplaceWebService\Model;
 /******************************************************************************* 
 
  *  Marketplace Web Service PHP5 Library
@@ -19,7 +20,7 @@
 /**
  *  @see MarketplaceWebService_Model
  */
-require_once ('MarketplaceWebService/Model.php');  
+//require_once ('MarketplaceWebService/MarketplaceWebService_Model.php');
 
     
 
@@ -32,7 +33,9 @@ require_once ('MarketplaceWebService/Model.php');
  * <li>FeedSubmissionInfo: MarketplaceWebService_Model_FeedSubmissionInfo</li>
  *
  * </ul>
- */ 
+ */
+use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Model;
+
 class MarketplaceWebService_Model_SubmitFeedResult extends MarketplaceWebService_Model
 {
 

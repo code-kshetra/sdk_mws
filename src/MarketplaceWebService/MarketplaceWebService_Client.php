@@ -1,5 +1,4 @@
 <?php
-namespace Osom\Sdk_Mws\MarketplaceWebService;
 /**
  *  PHP Version 5
  *
@@ -16,13 +15,17 @@ namespace Osom\Sdk_Mws\MarketplaceWebService;
  *  Generated: Thu May 07 13:07:36 PDT 2009
  *
  */
+namespace Osom\Sdk_Mws\MarketplaceWebService;
 
-/**
- *  @see MarketplaceWebService_Interface
- */
-//require_once ('src/MarketplaceWebService/Interface.php');
+
 use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Interface;
-require_once ('RequestType.php');
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedRequest;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedResponse;
+use DateTime;
+use DateTimeZone;
+use Osom\Sdk_Mws\MarketplaceWebService\RequestType;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_ResponseHeaderMetadata;
+use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Exception;
 
 define('CONVERTED_PARAMETERS_KEY', 'PARAMETERS');
 define('CONVERTED_HEADERS_KEY', 'HEADERS');
@@ -369,10 +372,10 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
   public function submitFeed($request)
   {
     if (!$request instanceof MarketplaceWebService_Model_SubmitFeedRequest) {
-      require_once ('MarketplaceWebService/Model/SubmitFeedRequest.php');
+      //require_once ('MarketplaceWebService/Model/MarketplaceWebService_Model_SubmitFeedRequest.php');
       $request = new MarketplaceWebService_Model_SubmitFeedRequest($request);
     }
-    require_once ('MarketplaceWebService/Model/SubmitFeedResponse.php');
+      //require_once ('MarketplaceWebService/Model/MarketplaceWebService_Model_SubmitFeedResponse.php');
     $httpResponse = $this->invoke($this->convertSubmitFeed($request), $request->getFeedContent(), $request->getContentMd5());
     $response = MarketplaceWebService_Model_SubmitFeedResponse::fromXML($httpResponse['ResponseBody']);
     $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
@@ -795,7 +798,7 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
    */
   private function invoke(array $converted, $dataHandle = null, $contentMd5 = null)
   {
-  	
+
   	$parameters = $converted[CONVERTED_PARAMETERS_KEY];
     $actionName = $parameters["Action"];
     $response = array();
@@ -804,7 +807,7 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
     
     /* Submit the request and read response body */
     try {
-    	
+
     // Ensure the endpoint URL is set.
     if (empty($this->config['ServiceURL'])) {
         throw new MarketplaceWebService_Exception(
@@ -821,7 +824,6 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
       do {
         try {
           $response = $this->performRequest($actionName, $converted, $dataHandle, $contentMd5);
-          
           $httpStatus = $response['Status'];
           
           switch ($httpStatus) {
@@ -853,7 +855,7 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
           
           /* Rethrow on deserializer error */
         } catch (Exception $e) {
-          require_once ('MarketplaceWebService/Exception.php');
+          //require_once ('MarketplaceWebService/MarketplaceWebService_Exception.php');
             throw new MarketplaceWebService_Exception(array('Exception' => $e, 'Message' => $e->getMessage()));
         }
 
@@ -889,7 +891,7 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
       $exProps["Message"] = "Internal Error";
     }
     
-    require_once ('MarketplaceWebService/Exception.php');
+    //require_once ('MarketplaceWebService/MarketplaceWebService_Exception.php');
     return new MarketplaceWebService_Exception($exProps);
   }
 
@@ -904,8 +906,8 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
    */
   private function performRequest($action, array $converted, $dataHandle = null, $contentMd5 = null) {
 
-    $curlOptions = $this->configureCurlOptions($action, $converted, $dataHandle, $contentMd5);
 
+    $curlOptions = $this->configureCurlOptions($action, $converted, $dataHandle, $contentMd5);
     if (is_null($curlOptions[CURLOPT_RETURNTRANSFER]) || !$curlOptions[CURLOPT_RETURNTRANSFER]) {
       $curlOptions[CURLOPT_RETURNTRANSFER] = true;
     }
@@ -923,7 +925,7 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
 
     $parsedHeader = $this->parseHttpHeader($header);
 
-    require_once('MarketplaceWebService/Model/ResponseHeaderMetadata.php');
+    //require_once('MarketplaceWebService/Model/MarketplaceWebService_Model_ResponseHeaderMetadata.php');
     $responseHeaderMetadata = new MarketplaceWebService_Model_ResponseHeaderMetadata(
               $parsedHeader['x-mws-request-id'],
               $parsedHeader['x-mws-response-context'],
@@ -973,8 +975,9 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
     rewind($streamHandle);
 
     if (!($receivedMd5Hash === $expectedMd5Hash)) {
-      require_once ('MarketplaceWebService/Exception.php');
-      throw new MarketplaceWebService_Exception(
+      //require_once ('MarketplaceWebService/MarketplaceWebService_Exception.php');
+      throw 
+      new MarketplaceWebService_Exception(
           array(
             'Message' => 'Received Content-MD5 = ' . $receivedMd5Hash . ' but expected ' . $expectedMd5Hash, 
             'ErrorCode' => 'ContentMD5DoesNotMatch'));
@@ -1068,8 +1071,8 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
    * @return array
    */
   private function configureCurlOptions($action, array $converted, $streamHandle = null, $contentMd5 = null) {
+
     $curlOptions = $this->getDefaultCurlOptions();
-    
     if (!is_null($this->config['ProxyHost'])) {
       $proxy = $this->config['ProxyHost'];
       $proxy .= ':' . ($this->config['ProxyPort'] == -1 ? '80' : $this->config['ProxyPort']);
@@ -1089,7 +1092,7 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
     if ($requestType == RequestType::POST_UPLOAD) {
 
       if (is_null($streamHandle) || !is_resource($streamHandle)) {
-        require_once ('MarketplaceWebService/Exception.php');
+        //require_once ('MarketplaceWebService/MarketplaceWebService_Exception.php');
         throw new MarketplaceWebService_Exception(
           array ('Message' => 'Missing stream resource.'));
       }

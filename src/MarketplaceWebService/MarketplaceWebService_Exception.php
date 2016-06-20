@@ -9,6 +9,7 @@
  *  @license     http://aws.amazon.com/apache2.0  Apache License, Version 2.0
  *  @version     2009-01-01
  */
+namespace Osom\Sdk_Mws\MarketplaceWebService;
 /******************************************************************************* 
 
  *  Marketplace Web Service PHP5 Library
@@ -22,6 +23,7 @@
  * returned by Marketplace Web Service  service
  *
  */
+use Exception;
 class MarketplaceWebService_Exception extends Exception
 
 {

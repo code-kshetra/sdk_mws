@@ -19,7 +19,7 @@
 /**
  *  @see MarketplaceWebService_Interface
  */
-require_once ('MarketplaceWebService/Interface.php'); 
+require_once ('MarketplaceWebService/MarketplaceWebService_Interface.php'); 
 
 /**
  * The Amazon Marketplace Web Service contain APIs for inventory and order management.
@@ -125,7 +125,7 @@ class  MarketplaceWebService_Mock implements MarketplaceWebService_Interface
      */
     public function submitFeed($request) 
     {
-        require_once ('MarketplaceWebService/Model/SubmitFeedResponse.php');
+        require_once ('MarketplaceWebService/Model/MarketplaceWebService_Model_SubmitFeedResponse.php');
         return MarketplaceWebService_Model_SubmitFeedResponse::fromXML($this->invoke('SubmitFeed'));
     }
 
