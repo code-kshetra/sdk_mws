@@ -9,7 +9,7 @@
 namespace Osom\Sdk_Mws\ProductManagement;
 
 
-include_once ('./src/.config.php');
+include_once (substr(__DIR__,0,strpos(__DIR__, 'src')).'src/.config.php');
 use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Client;
 use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Interface;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedRequest;
