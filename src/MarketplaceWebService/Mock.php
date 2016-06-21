@@ -301,7 +301,7 @@ class  MarketplaceWebService_Mock implements MarketplaceWebService_Interface
      */
     public function getFeedSubmissionList($request) 
     {
-        require_once ('MarketplaceWebService/Model/GetFeedSubmissionListResponse.php');
+        require_once ('MarketplaceWebService/Model/MarketplaceWebService_Model_GetFeedSubmissionListResponse.php');
         return MarketplaceWebService_Model_GetFeedSubmissionListResponse::fromXML($this->invoke('GetFeedSubmissionList'));
     }
 

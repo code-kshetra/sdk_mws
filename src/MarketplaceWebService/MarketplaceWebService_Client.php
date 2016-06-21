@@ -21,11 +21,14 @@ namespace Osom\Sdk_Mws\MarketplaceWebService;
 use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Interface;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedRequest;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedResponse;
-use DateTime;
-use DateTimeZone;
 use Osom\Sdk_Mws\MarketplaceWebService\RequestType;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_ResponseHeaderMetadata;
 use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Exception;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_GetFeedSubmissionResultRequest;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_GetFeedSubmissionListRequest;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_GetFeedSubmissionListResponse;
+use DateTime;
+use DateTimeZone;
 
 define('CONVERTED_PARAMETERS_KEY', 'PARAMETERS');
 define('CONVERTED_HEADERS_KEY', 'HEADERS');
@@ -470,7 +473,7 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
    * Request Report
    * requests the generation of a report
    *
-   * @see http://docs.amazonwebservices.com/${docPath}RequestReport.html
+   * @see http://docs.amazonwebservices.com/${docPath}RequestReport.htmluse Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_GetFeedSubmissionResultRequest;
    * @param mixed $request array of parameters for MarketplaceWebService_Model_RequestReportRequest request
    * or MarketplaceWebService_Model_RequestReportRequest object itself
    * @see MarketplaceWebService_Model_RequestReport
@@ -583,7 +586,7 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
   public function getFeedSubmissionResult($request)
   {
     if (!$request instanceof MarketplaceWebService_Model_GetFeedSubmissionResultRequest) {
-      require_once ('MarketplaceWebService/Model/GetFeedSubmissionResultRequest.php');
+      require_once ('MarketplaceWebService/Model/MarketplaceWebService_Model_GetFeedSubmissionResultRequest.php');
       $request = new MarketplaceWebService_Model_GetFeedSubmissionResultRequest($request);
     }
     require_once ('MarketplaceWebService/Model/GetFeedSubmissionResultResponse.php');
@@ -608,10 +611,10 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
   public function getFeedSubmissionList($request)
   {
     if (!$request instanceof MarketplaceWebService_Model_GetFeedSubmissionListRequest) {
-      require_once ('MarketplaceWebService/Model/GetFeedSubmissionListRequest.php');
+      //require_once ('MarketplaceWebService/Model/MarketplaceWebService_Model_GetFeedSubmissionListRequest.php');
       $request = new MarketplaceWebService_Model_GetFeedSubmissionListRequest($request);
     }
-    require_once ('MarketplaceWebService/Model/GetFeedSubmissionListResponse.php');
+    //require_once ('MarketplaceWebService/Model/MarketplaceWebService_Model_GetFeedSubmissionListResponse.php');
     $httpResponse = $this->invoke($this->convertGetFeedSubmissionList($request));
     $response = MarketplaceWebService_Model_GetFeedSubmissionListResponse::fromXML($httpResponse['ResponseBody']);
     $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);

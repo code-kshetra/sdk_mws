@@ -10,9 +10,10 @@
 use Osom\Sdk_Mws\ProductManagement\Feeds;
 class FeedsTest extends PHPUnit_Framework_TestCase
 {
-    public function testSubmitProductFeeds(){
-        $feeds = new Feeds();
-        $feed = <<<EOD
+
+    /*public function testSubmitProductFeeds(){
+        $feeds = new Feeds();*/
+        /*$feed = <<<EOD
 <?xml version="1.0" encoding="iso-8859-1"?>
 <AmazonEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:noNamespaceSchemaLocation="amzn-envelope.xsd">
@@ -55,8 +56,20 @@ xsi:noNamespaceSchemaLocation="amzn-envelope.xsd">
 </Product>
 </Message>
 </AmazonEnvelope>
+EOD;*/
+        /*$feed = <<<EOD
+<?xml version="1.0" encoding="iso-8859-1"?>
 EOD;
         $feedType = '_POST_PRODUCT_DATA_';
-        $this->assertTrue($feeds->createRequestFeed($feed,$feedType));
+        $operation = 'SubmitFeed';
+        $this->assertTrue($feeds->createRequestFeed($feed,$feedType,$operation));
+    }*/
+
+    public function testGetFeedSubmissionList(){
+        $feeds = new Feeds();
+        $operation = 'GetFeedSubmissionList';
+        $status = array('_SUBMITTED_', '_CANCELLED_', '_IN_SAFETY_NET_', '_IN_PROGRESS_', '_UNCONFIRMED_', '_AWAITING_ASYNCHRONOUS_REPLY_', '_DONE_');
+        $parameters = array('Status' => $status[6]);
+        $this->assertTrue($feeds->createRequestFeed('','',$operation, $parameters));
     }
 }

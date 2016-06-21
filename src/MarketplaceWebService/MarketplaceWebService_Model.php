@@ -177,7 +177,7 @@ abstract class MarketplaceWebService_Model
                     $elements = $xpath->query("./a:$fieldName", $dom);
                     if ($elements->length >= 1) {
                         //require_once (str_replace('_', DIRECTORY_SEPARATOR, $fieldType[0]) . ".php");
-                        $fieldType[0] = "Osom\\Sdk_Mws\\MarketplaceWebService\\Model\\".$fieldType;
+                        $fieldType[0] = "Osom\\Sdk_Mws\\MarketplaceWebService\\Model\\".$fieldType[0];
                         foreach ($elements as $element) {
                             $this->fields[$fieldName]['FieldValue'][] = new $fieldType[0]($element);
                         }

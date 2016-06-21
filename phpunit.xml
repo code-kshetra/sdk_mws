@@ -10,7 +10,7 @@
          stopOnFailure="false"
          syntaxCheck="false">
     <testsuites>
-        <testsuite name="Facades Test Suite">
+        <testsuite name="Feeds Test Suite">
             <directory suffix=".php">./tests/</directory>
         </testsuite>
     </testsuites>
