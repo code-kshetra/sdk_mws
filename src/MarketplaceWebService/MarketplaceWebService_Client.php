@@ -24,9 +24,10 @@ use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitF
 use Osom\Sdk_Mws\MarketplaceWebService\RequestType;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_ResponseHeaderMetadata;
 use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Exception;
-use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_GetFeedSubmissionResultRequest;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_GetFeedSubmissionListRequest;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_GetFeedSubmissionListResponse;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_GetFeedSubmissionResultRequest;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_GetFeedSubmissionResultResponse;
 use DateTime;
 use DateTimeZone;
 
@@ -586,10 +587,10 @@ class MarketplaceWebService_Client implements MarketplaceWebService_Interface
   public function getFeedSubmissionResult($request)
   {
     if (!$request instanceof MarketplaceWebService_Model_GetFeedSubmissionResultRequest) {
-      require_once ('MarketplaceWebService/Model/MarketplaceWebService_Model_GetFeedSubmissionResultRequest.php');
+      //require_once ('MarketplaceWebService/Model/MarketplaceWebService_Model_GetFeedSubmissionResultRequest.php');
       $request = new MarketplaceWebService_Model_GetFeedSubmissionResultRequest($request);
     }
-    require_once ('MarketplaceWebService/Model/GetFeedSubmissionResultResponse.php');
+    //require_once ('MarketplaceWebService/Model/MarketplaceWebService_Model_GetFeedSubmissionResultResponse.php');
     $httpResponse = $this->invoke($this->convertGetFeedSubmissionResult($request), $request->getFeedSubmissionResult());
     $response = MarketplaceWebService_Model_GetFeedSubmissionResultResponse::fromXML($httpResponse['ResponseBody']);
     $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);

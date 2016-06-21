@@ -72,4 +72,11 @@ EOD;
         $parameters = array('Status' => $status[6]);
         $this->assertTrue($feeds->createRequestFeed('','',$operation, $parameters));
     }
+
+    public function testGetFeedSubmissionResult(){
+        $feeds = new Feeds();
+        $operation = 'GetFeedSubmissionResult';
+        $parameters = array('SubmissionId' => '50049016973');
+        $this->assertTrue($feeds->createRequestFeed('','',$operation,$parameters));
+    }
 }

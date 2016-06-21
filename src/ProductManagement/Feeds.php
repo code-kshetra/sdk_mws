@@ -17,6 +17,8 @@ use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_GetFeed
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_StatusList;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedResponse;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedResult;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_GetFeedSubmissionResultRequest;
+use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Exception;
 
 
 
@@ -53,7 +55,7 @@ class Feeds
     }
     
     public function createRequestFeed($feed = '', $feedType = '', $operation, $parameters = array()){
-
+        $response = false;
         switch($operation) {
             case 'SubmitFeed':
                 $feedHandle = @fopen('php://memory', 'rw+');
@@ -74,7 +76,6 @@ class Feeds
                 $response = $this->invokeSubmitFeed($this->service, $request);
 
                 @fclose($feedHandle);
-                return $response;
                 break;
             case 'GetFeedSubmissionList':
                 $request = new MarketplaceWebService_Model_GetFeedSubmissionListRequest();
@@ -87,10 +88,24 @@ class Feeds
                 }
                 else 
                     $response = false;
-                return $response;
                 break;
-
+            case 'GetFeedSubmissionResult':
+                $request = new MarketplaceWebService_Model_GetFeedSubmissionResultRequest();
+                $request->setMerchant(MERCHANT_ID);
+                if(isset($parameters['SubmissionId']) && !empty($parameters['SubmissionId'])) {
+                    $request->setFeedSubmissionId($parameters['SubmissionId']);
+                    $request->setFeedSubmissionResult(@fopen('php://memory', 'rw+'));
+                    //$request->setMWSAuthToken('<MWS Auth Token>'); // Optional
+                    $response = $this->invokeGetFeedSubmissionResult($this->service, $request);
+                }
+                else
+                    $response = false;
+                break;
+            default:
+                $response = false;
+                break;
         }
+        return $response;
     }
     
     /**
@@ -263,6 +278,59 @@ class Feeds
             $responseVar = false;
         }
 
+        return $responseVar;
+    }
+
+    /**
+     * Get Feed Submission Result Action Sample
+     * retrieves the feed processing report
+     *
+     * @param MarketplaceWebService_Interface $service instance of MarketplaceWebService_Interface
+     * @param mixed $request MarketplaceWebService_Model_GetFeedSubmissionResult or array of parameters
+     */
+    public function invokeGetFeedSubmissionResult(MarketplaceWebService_Interface $service, $request)
+    {
+        $responseVar = true;
+        try {
+            $response = $service->getFeedSubmissionResult($request);
+
+            //using this XML to catch response for amazon
+            $xml = stream_get_contents($request->getFeedSubmissionResult());
+
+            echo ("Service Response\n");
+            echo ("=============================================================================\n");
+
+            echo("        GetFeedSubmissionResultResponse\n");
+            if ($response->isSetGetFeedSubmissionResultResult()) {
+                $getFeedSubmissionResultResult = $response->getGetFeedSubmissionResultResult();
+                echo ("            GetFeedSubmissionResult");
+
+                if ($getFeedSubmissionResultResult->isSetContentMd5()) {
+                    echo ("                ContentMd5");
+                    echo ("                " . $getFeedSubmissionResultResult->getContentMd5() . "\n");
+                }
+            }
+            if ($response->isSetResponseMetadata()) {
+                echo("            ResponseMetadata\n");
+                $responseMetadata = $response->getResponseMetadata();
+                if ($responseMetadata->isSetRequestId())
+                {
+                    echo("                RequestId\n");
+                    echo("                    " . $responseMetadata->getRequestId() . "\n");
+                }
+            }
+
+            echo("            ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
+        } catch (MarketplaceWebService_Exception $ex) {
+            echo("Caught Exception: " . $ex->getMessage() . "\n");
+            echo("Response Status Code: " . $ex->getStatusCode() . "\n");
+            echo("Error Code: " . $ex->getErrorCode() . "\n");
+            echo("Error Type: " . $ex->getErrorType() . "\n");
+            echo("Request ID: " . $ex->getRequestId() . "\n");
+            echo("XML: " . $ex->getXML() . "\n");
+            echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
+            $responseVar = false;
+        }
         return $responseVar;
     }
 }
