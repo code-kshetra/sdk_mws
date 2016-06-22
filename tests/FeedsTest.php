@@ -70,7 +70,8 @@ EOD;
         $operation = 'GetFeedSubmissionList';
         $status = array('_SUBMITTED_', '_CANCELLED_', '_IN_SAFETY_NET_', '_IN_PROGRESS_', '_UNCONFIRMED_', '_AWAITING_ASYNCHRONOUS_REPLY_', '_DONE_');
         $parameters = array('Status' => $status[6]);
-        $this->assertTrue($feeds->createRequestFeed('','',$operation, $parameters));
+        $response = json_decode($feeds->createRequestFeed('','',$operation, $parameters));
+        $this->assertTrue($response->success);
     }
 
     public function testGetFeedSubmissionResult(){

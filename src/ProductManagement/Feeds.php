@@ -19,6 +19,8 @@ use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitF
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedResult;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_GetFeedSubmissionResultRequest;
 use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Exception;
+use SimpleXMLElement;
+use stdClass;
 
 
 
@@ -200,84 +202,85 @@ class Feeds
      */
     public function invokeGetFeedSubmissionList(MarketplaceWebService_Interface $service, $request)
     {
-        $responseVar = true;
+        $responseVar = null;
+        $responseJson = array();
         try {
             $response = $service->getFeedSubmissionList($request);
 
-            echo ("Service Response\n");
-            echo ("=============================================================================\n");
-
-            echo("        GetFeedSubmissionListResponse\n");
+            $GetFeedSubmissionListResponse = array();
             if ($response->isSetGetFeedSubmissionListResult()) {
-                echo("            GetFeedSubmissionListResult\n");
+                $GetFeedSubmissionListResult = array();
                 $getFeedSubmissionListResult = $response->getGetFeedSubmissionListResult();
                 if ($getFeedSubmissionListResult->isSetNextToken())
                 {
-                    echo("                NextToken\n");
-                    echo("                    " . $getFeedSubmissionListResult->getNextToken() . "\n");
+                    $GetFeedSubmissionListResult["NextToken"] = $getFeedSubmissionListResult->getNextToken();
                 }
                 if ($getFeedSubmissionListResult->isSetHasNext())
                 {
-                    echo("                HasNext\n");
-                    echo("                    " . $getFeedSubmissionListResult->getHasNext() . "\n");
+                    $GetFeedSubmissionListResult["HasNext"] = $getFeedSubmissionListResult->getHasNext();
                 }
                 $feedSubmissionInfoList = $getFeedSubmissionListResult->getFeedSubmissionInfoList();
+                $FeedSubmissionInfoList = array();
                 foreach ($feedSubmissionInfoList as $feedSubmissionInfo) {
-                    echo("                FeedSubmissionInfo\n");
+                    $FeedSubmissionInfo = array();
                     if ($feedSubmissionInfo->isSetFeedSubmissionId())
                     {
-                        echo("                    FeedSubmissionId\n");
-                        echo("                        " . $feedSubmissionInfo->getFeedSubmissionId() . "\n");
+                        $FeedSubmissionInfo["FeedSubmissionId"] = $feedSubmissionInfo->getFeedSubmissionId();
                     }
                     if ($feedSubmissionInfo->isSetFeedType())
                     {
-                        echo("                    FeedType\n");
-                        echo("                        " . $feedSubmissionInfo->getFeedType() . "\n");
+                        $FeedSubmissionInfo["FeedType"] = $feedSubmissionInfo->getFeedType();
                     }
                     if ($feedSubmissionInfo->isSetSubmittedDate())
                     {
-                        echo("                    SubmittedDate\n");
-                        echo("                        " . $feedSubmissionInfo->getSubmittedDate()->format(DATE_FORMAT) . "\n");
+                        $FeedSubmissionInfo["SubmittedDate"] = $feedSubmissionInfo->getSubmittedDate()->format(DATE_FORMAT);
+
                     }
                     if ($feedSubmissionInfo->isSetFeedProcessingStatus())
                     {
-                        echo("                    FeedProcessingStatus\n");
-                        echo("                        " . $feedSubmissionInfo->getFeedProcessingStatus() . "\n");
+                        $FeedSubmissionInfo["FeedProcessingStatus"] = $feedSubmissionInfo->getFeedProcessingStatus();
                     }
                     if ($feedSubmissionInfo->isSetStartedProcessingDate())
                     {
-                        echo("                    StartedProcessingDate\n");
-                        echo("                        " . $feedSubmissionInfo->getStartedProcessingDate()->format(DATE_FORMAT) . "\n");
+                        $FeedSubmissionInfo["StartedProcessingDate"] = $feedSubmissionInfo->getStartedProcessingDate()->format(DATE_FORMAT);
                     }
                     if ($feedSubmissionInfo->isSetCompletedProcessingDate())
                     {
-                        echo("                    CompletedProcessingDate\n");
-                        echo("                        " . $feedSubmissionInfo->getCompletedProcessingDate()->format(DATE_FORMAT) . "\n");
+                        $FeedSubmissionInfo["CompletedProcessingDate"] = $feedSubmissionInfo->getCompletedProcessingDate()->format(DATE_FORMAT);
                     }
+                    array_push($FeedSubmissionInfoList,$FeedSubmissionInfo);
                 }
+                $GetFeedSubmissionListResult["FeedSubmissionInfo"] = $FeedSubmissionInfoList;
             }
+
+            $GetFeedSubmissionListResponse["GetFeedSubmissionListResult"] = $GetFeedSubmissionListResult;
+            $ResponseMetadata = array();
             if ($response->isSetResponseMetadata()) {
-                echo("            ResponseMetadata\n");
                 $responseMetadata = $response->getResponseMetadata();
                 if ($responseMetadata->isSetRequestId())
                 {
-                    echo("                RequestId\n");
-                    echo("                    " . $responseMetadata->getRequestId() . "\n");
+                    $ResponseMetadata["RequestId"] = $responseMetadata->getRequestId();
                 }
+
+                $GetFeedSubmissionListResponse["ResponseMetadata"] = $ResponseMetadata;
             }
 
-            echo("            ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
+            $GetFeedSubmissionListResponse["ResponseHeaderMetadata"] = $response->getResponseHeaderMetadata();
+            $responseJson["success"] = true;
+            $responseJson["GetFeedSubmissionListResponse"] = $GetFeedSubmissionListResponse;
+            $responseVar = json_encode($responseJson);
         } catch (MarketplaceWebService_Exception $ex) {
-            echo("Caught Exception: " . $ex->getMessage() . "\n");
-            echo("Response Status Code: " . $ex->getStatusCode() . "\n");
-            echo("Error Code: " . $ex->getErrorCode() . "\n");
-            echo("Error Type: " . $ex->getErrorType() . "\n");
-            echo("Request ID: " . $ex->getRequestId() . "\n");
-            echo("XML: " . $ex->getXML() . "\n");
-            echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
-            $responseVar = false;
-        }
 
+            $responseJson["success"] = false;
+            $responseJson["caughtException"] = $ex->getMessage();
+            $responseJson["responseStatusCode"] = $ex->getStatusCode();
+            $responseJson["errorCode"] = $ex->getErrorCode();
+            $responseJson["errorType"] = $ex->getErrorType();
+            $responseJson["requestID"] = $ex->getRequestId();
+            $responseJson["xml"] = $ex->getXML();
+            $responseJson["responseHeaderMetadata"] = $ex->getResponseHeaderMetadata();
+            $responseVar = json_encode($responseJson);
+        }
         return $responseVar;
     }
 
@@ -293,9 +296,6 @@ class Feeds
         $responseVar = true;
         try {
             $response = $service->getFeedSubmissionResult($request);
-
-            //using this XML to catch response for amazon
-            $xml = stream_get_contents($request->getFeedSubmissionResult());
 
             echo ("Service Response\n");
             echo ("=============================================================================\n");
@@ -321,6 +321,15 @@ class Feeds
             }
 
             echo("            ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
+            //using this XML to catch response for amazon
+            $xml = stream_get_contents($request->getFeedSubmissionResult());
+            $xml = new SimpleXMLElement($xml);
+            $result = new stdClass();
+            $result->report = $xml->Message->ProcessingReport;
+            $result->statusCode = $result->report->StatusCode;
+            $result->summary = $result->report->ProcessingSummary;
+            //var_dump($result);
+
         } catch (MarketplaceWebService_Exception $ex) {
             echo("Caught Exception: " . $ex->getMessage() . "\n");
             echo("Response Status Code: " . $ex->getStatusCode() . "\n");
