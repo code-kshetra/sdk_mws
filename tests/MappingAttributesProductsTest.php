@@ -3,15 +3,13 @@
 /**
  * Created by PhpStorm.
  * User: octavio
- * Date: 17/06/16
- * Time: 05:08 PM
+ * Date: 29/06/16
+ * Time: 05:47 PM
  */
-
-use Osom\Sdk_Mws\ProductManagement\Feeds;
 use Osom\Sdk_Mws\ProductManagement\MappingAttributesProducts;
-class FeedsTest extends PHPUnit_Framework_TestCase
+class MappingAttributesProductsTest extends PHPUnit_Framework_TestCase
 {
-    public function testSubmitProductFeeds(){
+    public function testCreateXmlfromJson(){
         $data = [
             "MessageType" => "Product",
             "PurgeAndReplace" => "false",
@@ -88,35 +86,9 @@ class FeedsTest extends PHPUnit_Framework_TestCase
                 ]
             ]
         ];
-
-        $data = json_encode($data);
-
-
+        
+        $json = json_encode($data);
         $mapping = new MappingAttributesProducts();
-        $feeds = new Feeds();
-        $feed = $mapping->createXmlfromJson($data);
-
-        $feedType = '_POST_PRODUCT_DATA_';
-        $operation = 'SubmitFeed';
-        $response = json_decode($feeds->createRequestFeed($feed,$feedType,$operation));
-        $this->assertTrue($response->success);
+        $this->assertXmlStringEqualsXmlFile('/var/www/sdk_mws/src/ProductManagement/tmp.xml',$mapping->createXmlfromJson($json));
     }
-
-    public function testGetFeedSubmissionList(){
-        $feeds = new Feeds();
-        $operation = 'GetFeedSubmissionList';
-        $status = array('_SUBMITTED_', '_CANCELLED_', '_IN_SAFETY_NET_', '_IN_PROGRESS_', '_UNCONFIRMED_', '_AWAITING_ASYNCHRONOUS_REPLY_', '_DONE_');
-        $parameters = array('Status' => $status[6]);
-        $response = json_decode($feeds->createRequestFeed('','',$operation, $parameters));
-        $this->assertTrue($response->success);
-    }
-
-    public function testGetFeedSubmissionResult(){
-        $feeds = new Feeds();
-        $operation = 'GetFeedSubmissionResult';
-        $parameters = array('SubmissionId' => '50049016973');
-        $response = json_decode($feeds->createRequestFeed('','',$operation,$parameters));
-        $this->assertTrue($response->success);
-    }
-
 }
