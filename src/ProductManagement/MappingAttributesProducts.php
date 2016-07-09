@@ -10,6 +10,7 @@ namespace Osom\Sdk_Mws\ProductManagement;
 
 include_once (substr(__DIR__,0,strpos(__DIR__, 'src')).'src/.config.php');
 use SimpleXMLElement;
+use \Osom\Sdk_Mws\ProductManagement\Dummies\DummieProductRequest;
 
 class MappingAttributesProducts{
     
@@ -69,6 +70,20 @@ class MappingAttributesProducts{
                 $xml_body_info->addChild($key, $value);
             }
         }
+    }
+
+    public function buildRequestFeed($data,$type){
+        $request = [];
+        switch($type){
+            case 'Product':
+                $dummieProduct = new DummieProductRequest();
+                $dataDummie = $dummieProduct->getStructure();
+                $dataDummie["MessageID"] = $data->MessageID;
+                var_dump($dataDummie);
+                die();
+                break;
+        }
+        return $request;
     }
 
 }

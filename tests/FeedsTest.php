@@ -11,7 +11,7 @@ use Osom\Sdk_Mws\ProductManagement\Feeds;
 use Osom\Sdk_Mws\ProductManagement\MappingAttributesProducts;
 class FeedsTest extends PHPUnit_Framework_TestCase
 {
-    public function testSubmitProductFeeds(){
+    /*public function testSubmitProductFeeds(){
         $data = [
             "MessageType" => "Product",
             "PurgeAndReplace" => "false",
@@ -100,7 +100,7 @@ class FeedsTest extends PHPUnit_Framework_TestCase
         $operation = 'SubmitFeed';
         $response = json_decode($feeds->createRequestFeed($feed,$feedType,$operation));
         $this->assertTrue($response->success);
-    }
+    }*/
 
     public function testGetFeedSubmissionList(){
         $feeds = new Feeds();

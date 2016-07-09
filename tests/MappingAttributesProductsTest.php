@@ -91,4 +91,14 @@ class MappingAttributesProductsTest extends PHPUnit_Framework_TestCase
         $mapping = new MappingAttributesProducts();
         $this->assertXmlStringEqualsXmlFile('/var/www/sdk_mws/src/ProductManagement/tmp.xml',$mapping->createXmlfromJson($json));
     }
+
+    public function testBuildRequestFeed(){
+        $mapping = new MappingAttributesProducts();
+        $data = [
+            "MessageID" => "1"
+        ];
+        $data = json_decode(json_encode($data), FALSE);
+        $mapping->buildRequestFeed((object)$data,'Product');
+        $this->assertJson($mapping);
+    }
 }
