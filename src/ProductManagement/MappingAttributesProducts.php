@@ -20,8 +20,6 @@ class MappingAttributesProducts{
     
     public function createXmlfromJson($json){
         $jsonDataArray = json_decode($json, TRUE);
-        //var_dump($jsonDataArray);
-        //die();
         $xml_body_string = "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>";
         $xml_body_string .= "<AmazonEnvelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"amzn-envelope.xsd\">";
         $xml_body_string .= "</AmazonEnvelope>";
@@ -34,6 +32,7 @@ class MappingAttributesProducts{
         //data convert JSON to XML
         $this->array_to_xml($jsonDataArray,$xml_body_info);
         
+        //return $xml_body_info->asXML(dirname(__FILE__)."/tmp.xml");
         return $xml_body_info->asXML();
     }
     
@@ -72,17 +71,43 @@ class MappingAttributesProducts{
         }
     }
 
-    public function buildRequestFeed($data,$type){
+    public function buildRequestFeed($dataItems,$type, $purgeAndReplace = "false"){
         $request = [];
-        switch($type){
-            case 'Product':
-                $dummieProduct = new DummieProductRequest();
-                $dataDummie = $dummieProduct->getStructure();
-                $dataDummie["MessageID"] = $data->MessageID;
-                var_dump($dataDummie);
-                die();
-                break;
+        
+        if(count($dataItems)>0) {
+            $request["MessageType"] = $type;
+            $request["PurgeAndReplace"] = $purgeAndReplace;
+            $request["Message"] = [];   
+            $countMessage = 1;
+            foreach ($dataItems as $data) {
+                switch ($type) {
+                    case 'Product':
+                        $dummieProduct = new DummieProductRequest();
+                        $dataDummie = $dummieProduct->getStructure();
+                        $dataDummie["MessageID"] = (string)$countMessage;
+                        $dataDummie["OperationType"] = $data->OperationType;
+                        $dataDummie["Product"]["SKU"] = $data->SKU;
+                        $dataDummie["Product"]["StandardProductID"]["Type"] = $data->StandarProductID_Type;
+                        $dataDummie["Product"]["StandardProductID"]["Value"] = $data->StandarProductID_Value;
+                        $dataDummie["Product"]["DescriptionData"]["Title"] = $data->DescriptionData_Title;
+                        $dataDummie["Product"]["DescriptionData"]["Brand"] = $data->DescriptionData_Brand;
+                        $dataDummie["Product"]["DescriptionData"]["Description"] = $data->DescriptionData_Description;
+                        $dataDummie["Product"]["DescriptionData"]["BulletPoint"] = $data->DescriptionData_BulletPoint;
+                        $dataDummie["Product"]["DescriptionData"]["MSRP"]["attribute"]["currency"] = $data->DescriptionData_Currency;
+                        $dataDummie["Product"]["DescriptionData"]["MSRP"]["value"] = $data->DescriptionData_Msrp;
+                        $dataDummie["Product"]["DescriptionData"]["Manufacturer"] = $data->DescriptionData_Manufacturer;
+                        $dataDummie["Product"]["DescriptionData"]["ItemType"] = $data->DescriptionData_ItemType;
+                        $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["VariationData"]["Size"] = $data->ProductData_Size;
+                        $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["VariationData"]["Color"] = $data->ProductData_Color;
+                        $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["ClassificationData"]["Department"] = $data->ProductData_Gender;
+                        break;
+                }
+                $countMessage++;
+                array_push($request["Message"],$dataDummie);
+            }
         }
+
+        $request = json_encode($request);
         return $request;
     }
 

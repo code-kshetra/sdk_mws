@@ -29,7 +29,7 @@ class DummieProductRequest
                     "Description" => "?",
                     "BulletPoint" => "?",
                     "MSRP" => [
-                        "attribute" => ["currency"=>"MXN PESOS"],
+                        "attribute" => ["currency"=>"MXN"],
                         "value"=>"?",
                     ],
                     "Manufacturer" => "?",
@@ -41,7 +41,7 @@ class DummieProductRequest
                             "Parentage" => "child",
                             "Size" => "?",
                             "Color" => "?",
-                            "VariationTheme" => "?"
+                            "VariationTheme" => "SizeColor"
                         ],
                         "ClassificationData" => [
                             "Department" => "?"

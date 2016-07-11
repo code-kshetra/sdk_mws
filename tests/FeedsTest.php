@@ -11,8 +11,8 @@ use Osom\Sdk_Mws\ProductManagement\Feeds;
 use Osom\Sdk_Mws\ProductManagement\MappingAttributesProducts;
 class FeedsTest extends PHPUnit_Framework_TestCase
 {
-    /*public function testSubmitProductFeeds(){
-        $data = [
+    public function testSubmitProductFeeds(){
+        /*$data = [
             "MessageType" => "Product",
             "PurgeAndReplace" => "false",
             "Message" => [
@@ -90,17 +90,58 @@ class FeedsTest extends PHPUnit_Framework_TestCase
         ];
 
         $data = json_encode($data);
-
+        */
 
         $mapping = new MappingAttributesProducts();
         $feeds = new Feeds();
+
+        $data = [
+            [
+                "OperationType" => "Update",
+                "SKU" => "FL039SH43RUQDFMX-312919",
+                "StandarProductID_Type" => "EAN",
+                "StandarProductID_Value" => "7500421081204",
+                "DescriptionData_Title" => "Example Product Title",
+                "DescriptionData_Brand" => "Example Product Brand",
+                "DescriptionData_Description" => "This is an example product description",
+                "DescriptionData_BulletPoint" => "Example Bullet Point 1",
+                "DescriptionData_Currency" => "MXN",
+                "DescriptionData_Msrp" => "200.00",
+                "DescriptionData_Manufacturer" => "Example Product Manufacturer",
+                "DescriptionData_ItemType" => "example-item-type",
+                "ProductData_Size" => "34",
+                "ProductData_Color" => "Negro",
+                "ProductData_Gender" => "mujeres"
+            ],
+            [
+                "OperationType" => "Update",
+                "SKU" => "FL039SH43RUQDFMX-312920",
+                "StandarProductID_Type" => "EAN",
+                "StandarProductID_Value" => "7500421081205",
+                "DescriptionData_Title" => "Example Product Title",
+                "DescriptionData_Brand" => "Example Product Brand",
+                "DescriptionData_Description" => "This is an example product description",
+                "DescriptionData_BulletPoint" => "Example Bullet Point 1",
+                "DescriptionData_Currency" => "MXN",
+                "DescriptionData_Msrp" => "250.00",
+                "DescriptionData_Manufacturer" => "Example Product Manufacturer",
+                "DescriptionData_ItemType" => "example-item-type",
+                "ProductData_Size" => "34",
+                "ProductData_Color" => "Negro",
+                "ProductData_Gender" => "mujeres"
+            ]
+        ];
+
+        (object)$data = json_decode(json_encode($data), FALSE);
+        $data = $mapping->buildRequestFeed($data,'Product');
+
         $feed = $mapping->createXmlfromJson($data);
 
         $feedType = '_POST_PRODUCT_DATA_';
         $operation = 'SubmitFeed';
         $response = json_decode($feeds->createRequestFeed($feed,$feedType,$operation));
         $this->assertTrue($response->success);
-    }*/
+    }
 
     public function testGetFeedSubmissionList(){
         $feeds = new Feeds();
