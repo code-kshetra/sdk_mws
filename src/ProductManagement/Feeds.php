@@ -15,6 +15,7 @@ use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Interface;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedRequest;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_GetFeedSubmissionListRequest;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_StatusList;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_IdList;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedResponse;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedResult;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_GetFeedSubmissionResultRequest;
@@ -84,8 +85,14 @@ class Feeds
                 $request->setMerchant(MERCHANT_ID);
                 //$request->setMWSAuthToken('<MWS Auth Token>'); // Optional
                 $statusList = new MarketplaceWebService_Model_StatusList();
+                $idList = new MarketplaceWebService_Model_IdList();
                 if(isset($parameters['Status']) && !empty($parameters['Status'])) {
                     $request->setFeedProcessingStatusList($statusList->withStatus($parameters['Status']));
+                    $response = $this->invokeGetFeedSubmissionList($this->service, $request);
+                }
+                if(isset($parameters['SubmissionId']) && !empty($parameters['SubmissionId'])){
+                    //$request->setFeedSubmissionId($parameters['SubmissionId']);
+                    $request->setFeedSubmissionIdList($idList->withId($parameters['SubmissionId']));
                     $response = $this->invokeGetFeedSubmissionList($this->service, $request);
                 }
                 else 
