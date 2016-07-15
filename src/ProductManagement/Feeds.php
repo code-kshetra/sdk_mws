@@ -20,6 +20,7 @@ use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitF
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_SubmitFeedResult;
 use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_GetFeedSubmissionResultRequest;
 use Osom\Sdk_Mws\MarketplaceWebService\MarketplaceWebService_Exception;
+use Osom\Sdk_Mws\MarketplaceWebService\Model\MarketplaceWebService_Model_TypeList;
 use SimpleXMLElement;
 use stdClass;
 
@@ -86,13 +87,18 @@ class Feeds
                 //$request->setMWSAuthToken('<MWS Auth Token>'); // Optional
                 $statusList = new MarketplaceWebService_Model_StatusList();
                 $idList = new MarketplaceWebService_Model_IdList();
+                $feedsTypeList = new MarketplaceWebService_Model_TypeList();
                 if(isset($parameters['Status']) && !empty($parameters['Status'])) {
                     $request->setFeedProcessingStatusList($statusList->withStatus($parameters['Status']));
                     $response = $this->invokeGetFeedSubmissionList($this->service, $request);
                 }
-                if(isset($parameters['SubmissionId']) && !empty($parameters['SubmissionId'])){
-                    //$request->setFeedSubmissionId($parameters['SubmissionId']);
+                elseif(isset($parameters['SubmissionId']) && !empty($parameters['SubmissionId']) && !isset($parameters['FeedType'])){
                     $request->setFeedSubmissionIdList($idList->withId($parameters['SubmissionId']));
+                    $response = $this->invokeGetFeedSubmissionList($this->service, $request);
+                }
+                elseif(isset($parameters['SubmissionId']) && !empty($parameters['SubmissionId']) && isset($parameters['FeedType']) && !empty($parameters['FeedType'])){
+                    $request->setFeedSubmissionIdList($idList->withId($parameters['SubmissionId']));
+                    $request->setFeedTypeList($feedsTypeList->withType($parameters['FeedType']));
                     $response = $this->invokeGetFeedSubmissionList($this->service, $request);
                 }
                 else 

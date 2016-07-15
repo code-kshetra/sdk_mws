@@ -64,6 +64,104 @@ class FeedsTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($response->success);
     }
     */
+    public function testSubmitPriceFeeds(){
+        $mapping = new MappingAttributesProducts();
+        $feeds = new Feeds();
+
+        $data = [
+            [
+                "OperationType" => "Update",
+                "SKU" => "FL039SH43RUQDFMX-312919",
+                "StandardPrice_Currency" => "MXN",
+                "StandardPrice" => "200.00",
+                "Sale_StartDate" => "2008-10-01T00:00:00Z",
+                "Sale_EndDate" => "2009-10-01T00:00:00Z",
+                "Sale_SalePrice_Currency" => "MXN",
+                "Sale_SalePrice" => "150.00"
+            ],
+            [
+                "OperationType" => "Update",
+                "SKU" => "FL039SH43RUQDFMX-312920",
+                "StandardPrice_Currency" => "MXN",
+                "StandardPrice" => "250.00",
+                "Sale_StartDate" => "2008-10-01T00:00:00Z",
+                "Sale_EndDate" => "2009-10-01T00:00:00Z",
+                "Sale_SalePrice_Currency" => "MXN",
+                "Sale_SalePrice" => "120.00"
+            ]
+        ];
+
+        (object)$data = json_decode(json_encode($data), FALSE);
+        $data = $mapping->buildRequestFeed($data,'Price');
+
+        $feed = $mapping->createXmlfromJson($data);
+
+        $feedType = '_POST_PRODUCT_PRICING_DATA_';
+        $operation = 'SubmitFeed';
+        $response = json_decode($feeds->createRequestFeed($feed,$feedType,$operation));
+        $this->assertTrue($response->success);
+    }
+
+    public function testSubmitStockFeeds(){
+        $mapping = new MappingAttributesProducts();
+        $feeds = new Feeds();
+
+        $data = [
+            [
+                "OperationType" => "Update",
+                "SKU" => "FL039SH43RUQDFMX-312919",
+                "Quantity" => "1",
+                "FulfillmentLatency" => "7"
+            ],
+            [
+                "OperationType" => "Update",
+                "SKU" => "FL039SH43RUQDFMX-312920",
+                "Quantity" => "1",
+                "FulfillmentLatency" => "7"
+            ]
+        ];
+
+        (object)$data = json_decode(json_encode($data), FALSE);
+        $data = $mapping->buildRequestFeed($data,'Inventory');
+
+        $feed = $mapping->createXmlfromJson($data);
+
+        $feedType = '_POST_INVENTORY_AVAILABILITY_DATA_';
+        $operation = 'SubmitFeed';
+        $response = json_decode($feeds->createRequestFeed($feed,$feedType,$operation));
+        $this->assertTrue($response->success);
+    }
+
+    public function testSubmitImagesFeeds(){
+        $mapping = new MappingAttributesProducts();
+        $feeds = new Feeds();
+
+        $data = [
+            [
+                "OperationType" => "Update",
+                "SKU" => "FL039SH43RUQDFMX-312919",
+                "ImageType" => "Main",
+                "ImageLocation" => "http://static.dafiti.com.mx/p/calvin-klein-6965-312919-2-zoom2.jpg"
+            ],
+            [
+                "OperationType" => "Update",
+                "SKU" => "FL039SH43RUQDFMX-312920",
+                "ImageType" => "Main",
+                "ImageLocation" => "http://static.dafiti.com.mx/p/calvin-klein-6965-312920-2-zoom2.jpg"
+            ]
+        ];
+
+        (object)$data = json_decode(json_encode($data), FALSE);
+        $data = $mapping->buildRequestFeed($data,'ProductImage');
+
+        $feed = $mapping->createXmlfromJson($data);
+
+        $feedType = '_POST_PRODUCT_IMAGE_DATA_';
+        $operation = 'SubmitFeed';
+        $response = json_decode($feeds->createRequestFeed($feed,$feedType,$operation));
+        $this->assertTrue($response->success);
+    }
+
     public function testGetFeedSubmissionList(){
         $feeds = new Feeds();
         $operation = 'GetFeedSubmissionList';
@@ -89,4 +187,12 @@ class FeedsTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($response->success);
     }
 
+    public function testGetFeedSubmissionListByIdsAndTypeFeed(){
+        $feeds = new Feeds();
+        $operation = 'GetFeedSubmissionList';
+        $parameters = array('SubmissionId' => '50220016997', 'FeedType'=>'_POST_INVENTORY_AVAILABILITY_DATA_');
+        $response = json_decode($feeds->createRequestFeed('','',$operation, $parameters));
+        var_dump($response);
+        $this->assertTrue($response->success);
+    }
 }

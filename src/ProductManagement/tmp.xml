@@ -11,6 +11,10 @@
         <OperationType>Update</OperationType>
         <Product>
             <SKU>56790</SKU>
+            <StandardProductID>
+                <Type>ASIN</Type>
+                <Value>B0EXAMPLEG</Value>
+            </StandardProductID>
             <ProductTaxCode>A_GEN_NOTAX</ProductTaxCode>
             <DescriptionData>
                 <Title>Example Product Title</Title>
@@ -41,6 +45,10 @@
         <OperationType>Update</OperationType>
         <Product>
             <SKU>56791</SKU>
+            <StandardProductID>
+                <Type>ASIN</Type>
+                <Value>B0EXAMPLEG2</Value>
+            </StandardProductID>
             <ProductTaxCode>A_GEN_NOTAX</ProductTaxCode>
             <DescriptionData>
                 <Title>Example Product Title</Title>

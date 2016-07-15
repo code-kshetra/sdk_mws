@@ -9,8 +9,11 @@
 namespace Osom\Sdk_Mws\ProductManagement;
 
 include_once (substr(__DIR__,0,strpos(__DIR__, 'src')).'src/.config.php');
-use SimpleXMLElement;
+use Osom\Sdk_Mws\ProductManagement\Dummies\DummieImagesRequest;
+use Osom\Sdk_Mws\ProductManagement\Dummies\DummiePriceRequest;
 use \Osom\Sdk_Mws\ProductManagement\Dummies\DummieProductRequest;
+use Osom\Sdk_Mws\ProductManagement\Dummies\DummieStockRequest;
+use SimpleXMLElement;
 
 class MappingAttributesProducts{
     
@@ -100,6 +103,38 @@ class MappingAttributesProducts{
                         $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["VariationData"]["Size"] = $data->ProductData_Size;
                         $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["VariationData"]["Color"] = $data->ProductData_Color;
                         $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["ClassificationData"]["Department"] = $data->ProductData_Gender;
+                        break;
+                    case 'Price':
+                        $dummiePrice = new DummiePriceRequest();
+                        $dataDummie = $dummiePrice->getStructure();
+                        $dataDummie["MessageID"] = (string)$countMessage;
+                        $dataDummie["OperationType"] = $data->OperationType;
+                        $dataDummie["Price"]["SKU"] = $data->SKU;
+                        $dataDummie["Price"]["StandardPrice"]["attribute"]["currency"] = $data->StandardPrice_Currency;
+                        $dataDummie["Price"]["StandardPrice"]["value"] = $data->StandardPrice;
+                        $dataDummie["Price"]["Sale"]["StartDate"] = $data->Sale_StartDate;
+                        $dataDummie["Price"]["Sale"]["EndDate"] = $data->Sale_EndDate;
+                        $dataDummie["Price"]["Sale"]["SalePrice"]["attribute"]["currency"] = $data->Sale_SalePrice_Currency;
+                        $dataDummie["Price"]["Sale"]["SalePrice"]["value"] = $data->Sale_SalePrice;
+                        break;
+                    case 'Inventory':
+                        $dummieStock = new DummieStockRequest();
+                        $dataDummie = $dummieStock->getStructure();
+                        $dataDummie["MessageID"] = (string)$countMessage;
+                        $dataDummie["OperationType"] = $data->OperationType;
+                        $dataDummie["Inventory"]["SKU"] = $data->SKU;
+                        $dataDummie["Inventory"]["Quantity"] = $data->Quantity;
+                        $dataDummie["Inventory"]["FulfillmentLatency"] = $data->FulfillmentLatency;
+                        break;
+                    case 'ProductImage':
+                        $dummieImages = new DummieImagesRequest();
+                        $dataDummie = $dummieImages->getStructure();
+                        $dataDummie["MessageID"] = (string)$countMessage;
+                        $dataDummie["OperationType"] = $data->OperationType;
+                        $dataDummie["ProductImage"]["SKU"] = $data->SKU;
+                        $dataDummie["ProductImage"]["ImageType"] = $data->ImageType;
+                        $dataDummie["ProductImage"]["ImageLocation"] = $data->ImageLocation;
+
                         break;
                 }
                 $countMessage++;
