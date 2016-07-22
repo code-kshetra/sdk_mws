@@ -192,7 +192,6 @@ class FeedsTest extends PHPUnit_Framework_TestCase
         $operation = 'GetFeedSubmissionList';
         $parameters = array('SubmissionId' => '50220016997', 'FeedType'=>'_POST_INVENTORY_AVAILABILITY_DATA_');
         $response = json_decode($feeds->createRequestFeed('','',$operation, $parameters));
-        var_dump($response);
         $this->assertTrue($response->success);
     }
 }

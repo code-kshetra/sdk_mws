@@ -9,9 +9,12 @@
 namespace Osom\Sdk_Mws\ProductManagement;
 
 include_once (substr(__DIR__,0,strpos(__DIR__, 'src')).'src/.config.php');
+use Osom\Sdk_Mws\OrdersManagement\Dummies\DummieOrderAcknowledgement;
+use Osom\Sdk_Mws\OrdersManagement\Dummies\DummieOrderAdjustment;
+use Osom\Sdk_Mws\OrdersManagement\Dummies\DummieOrderFulfillment;
 use Osom\Sdk_Mws\ProductManagement\Dummies\DummieImagesRequest;
 use Osom\Sdk_Mws\ProductManagement\Dummies\DummiePriceRequest;
-use \Osom\Sdk_Mws\ProductManagement\Dummies\DummieProductRequest;
+use Osom\Sdk_Mws\ProductManagement\Dummies\DummieProductRequest;
 use Osom\Sdk_Mws\ProductManagement\Dummies\DummieStockRequest;
 use SimpleXMLElement;
 
@@ -134,7 +137,46 @@ class MappingAttributesProducts{
                         $dataDummie["ProductImage"]["SKU"] = $data->SKU;
                         $dataDummie["ProductImage"]["ImageType"] = $data->ImageType;
                         $dataDummie["ProductImage"]["ImageLocation"] = $data->ImageLocation;
-
+                        break;
+                    case 'OrderAcknowledgement':
+                        $dummieOrderAcknowledgement = new DummieOrderAcknowledgement();
+                        $dataDummie = $dummieOrderAcknowledgement->getStructure();
+                        $dataDummie["MessageID"] = (string)$countMessage;
+                        $dataDummie["OrderAcknowledgement"]["AmazonOrderID"] = $data->AmazonOrderID;
+                        $dataDummie["OrderAcknowledgement"]["MerchantOrderID"] = $data->MerchantOrderID;
+                        $dataDummie["OrderAcknowledgement"]["StatusCode"] = $data->StatusCode;
+                        $dataDummie["OrderAcknowledgement"]["Item"]["AmazonOrderItemCode"] = $data->AmazonOrderItemCode;
+                        $dataDummie["OrderAcknowledgement"]["Item"]["MerchantOrderItemID"] = $data->MerchantOrderItemID;
+                        break;
+                    case 'OrderFulfillment':
+                        $dummieOrderFulfillment = new DummieOrderFulfillment();
+                        $dataDummie = $dummieOrderFulfillment->getStructure();
+                        $dataDummie["MessageID"] = (string)$countMessage;
+                        $dataDummie["OrderFulfillment"]["MerchantOrderID"]= $data->MerchantOrderID;
+                        $dataDummie["OrderFulfillment"]["MerchantFulfillmentID"] = $data->MerchantFulfillmentID;
+                        $dataDummie["OrderFulfillment"]["FulfillmentDate"] = $data->FulfillmentDate;
+                        $dataDummie["OrderFulfillment"]["FulfillmentData"]["CarrierCode"] = $data->FulfillmentData_CarrierCode;
+                        $dataDummie["OrderFulfillment"]["FulfillmentData"]["ShippingMethod"] = $data->FulfillmentData_ShippingMethod;
+                        $dataDummie["OrderFulfillment"]["FulfillmentData"]["ShipperTrackingNumber"] = $data->FulfillmentData_ShipperTrackingNumber;
+                        $dataDummie["OrderFulfillment"]["Item"]["MerchantOrderItemID"] = $data->Item_MerchantOrderItemID;
+                        $dataDummie["OrderFulfillment"]["Item"]["MerchantFulfillmentItemID"] = $data->MerchantFulfillmentItemID;
+                        $dataDummie["OrderFulfillment"]["Item"]["Quantity"] = $data->Item_Quantity;
+                        break;
+                    case 'OrderAdjustment':
+                        $dummieOrderAdjustment = new DummieOrderAdjustment();
+                        $dataDummie = $dummieOrderAdjustment->getStructure();
+                        $dataDummie["MessageID"] = (string)$countMessage;
+                        $dataDummie["OrderAdjustment"]["MerchantOrderID"] = $data->MerchantOrderID;
+                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["MerchantOrderItemID"] = $data->AdjustedItem_MerchantOrderItemID;
+                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["MerchantAdjustmentItemID"] = $data->AdjustedItem_MerchantAdjustmentItemID;
+                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["AdjustmentReason"] = $data->AdjustedItem_AdjustmentReason;
+                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["ItemPriceAdjustments"]["Component"][0]["Amount"]["value"] = $data->ItemPriceAdjustments_Principal;
+                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["ItemPriceAdjustments"]["Component"][1]["Amount"]["value"] = $data->ItemPriceAdjustments_Shipping;
+                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["ItemPriceAdjustments"]["Component"][2]["Amount"]["value"] = $data->ItemPriceAdjustments_Tax;
+                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["ItemPriceAdjustments"]["Component"][3]["Amount"]["value"] = $data->ItemPriceAdjustments_Shipping_Tax;
+                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["PromotionAdjustments"]["PromotionClaimCode"] = $data->PromotionAdjustments_PromotionClaimCode;
+                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["PromotionAdjustments"]["MerchantPromotionID"] = $data->PromotionAdjustments_MerchantPromotionID;
+                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["PromotionAdjustments"]["Component"][0]["Amount"]["value"] = $data->PromotionAdjustments_Principal;
                         break;
                 }
                 $countMessage++;
