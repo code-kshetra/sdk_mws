@@ -16,6 +16,11 @@
  * Library Version: 2015-09-24
  * Generated: Fri Sep 25 20:06:28 GMT 2015
  */
+namespace Osom\Sdk_Mws\MarketplaceWebServiceOrders;
+
+use Exception;
+use DOMElement;
+use DOMXPath;
 
 /**
  * MarketplaceWebServiceOrders_Model - base class for all model classes
@@ -102,7 +107,7 @@ abstract class MarketplaceWebServiceOrders_Model
         $xpath = new DOMXPath($dom->ownerDocument);
 
         foreach ($this->_fields as $fieldName => $field) {
-            $fieldType = $field['FieldType'];   
+            $fieldType = $field['FieldType'];
             if (is_array($fieldType)) {
                 if ($fieldType[0] == "object") {
                     $elements = $dom->childNodes;
@@ -117,7 +122,8 @@ abstract class MarketplaceWebServiceOrders_Model
                        $elements = $xpath->query("./*[local-name()='$fieldName']", $dom);
                     }
                     if ($elements->length >= 1) {
-                        require_once (dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . str_replace('_', DIRECTORY_SEPARATOR, $fieldType[0]) . ".php");
+                        //require_once (dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . str_replace('_', DIRECTORY_SEPARATOR, $fieldType[0]) . ".php");
+                        $fieldType[0] = "Osom\\Sdk_Mws\\MarketplaceWebServiceOrders\\Model\\".$fieldType[0];
                         foreach ($elements as $element) {
                             $this->_fields[$fieldName]['FieldValue'][] = new $fieldType[0]($element);
                         }
@@ -140,7 +146,8 @@ abstract class MarketplaceWebServiceOrders_Model
                 if ($this->_isComplexType($fieldType)) {
                     $elements = $xpath->query("./*[local-name()='$fieldName']", $dom);
                     if ($elements->length == 1) {
-                        require_once (dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . str_replace('_', DIRECTORY_SEPARATOR, $fieldType) . ".php");
+                        //require_once (dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . str_replace('_', DIRECTORY_SEPARATOR, $fieldType) . ".php");
+                        $fieldType = "Osom\\Sdk_Mws\\MarketplaceWebServiceOrders\\Model\\".$fieldType;
                         $this->_fields[$fieldName]['FieldValue'] = new $fieldType($elements->item(0));
                     }   
                 } else {

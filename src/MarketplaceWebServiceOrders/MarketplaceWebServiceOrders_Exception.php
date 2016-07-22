@@ -16,6 +16,7 @@
  * Library Version: 2015-09-24
  * Generated: Fri Sep 25 20:06:28 GMT 2015
  */
+namespace Osom\Sdk_Mws\MarketplaceWebServiceOrders;
 
 
 /**
@@ -23,6 +24,8 @@
  * returned by Marketplace Web Service Orders service
  *
  */
+use Exception;
+
 class MarketplaceWebServiceOrders_Exception extends Exception
 
 {

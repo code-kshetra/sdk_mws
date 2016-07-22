@@ -201,7 +201,7 @@ class Feeds
             $responseJson["requestID"] = $ex->getRequestId();
             $responseJson["xml"] = $ex->getXML();
             $responseJson["responseHeaderMetadata"] = $ex->getResponseHeaderMetadata();
-            $responseVar = json_decode($responseJson);
+            $responseVar = json_encode($responseJson);
         }
         return$responseVar;
     }

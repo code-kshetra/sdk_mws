@@ -17,10 +17,18 @@
  * Generated: Fri Sep 25 20:06:28 GMT 2015
  */
 
+namespace  Osom\Sdk_Mws\MarketplaceWebServiceOrders;
+
 /**
  *  @see MarketplaceWebServiceOrders_Interface
  */
-require_once (dirname(__FILE__) . '/Interface.php');
+//require_once(dirname(__FILE__) . '/MarketplaceWebServiceOrders_Interface.php');
+use Osom\Sdk_Mws\MarketplaceWebServiceOrders\MarketplaceWebServiceOrders_Interface;
+use Osom\Sdk_Mws\MarketplaceWebServiceOrders\Model\MarketplaceWebServiceOrders_Model_ListOrdersRequest;
+use Osom\Sdk_Mws\MarketplaceWebServiceOrders\Model\MarketplaceWebServiceOrders_Model_ListOrdersResponse;
+use Osom\Sdk_Mws\MarketplaceWebServiceOrders\Model\MarketplaceWebServiceOrders_Model_ResponseHeaderMetadata;
+use Osom\Sdk_Mws\MarketplaceWebServiceOrders\MarketplaceWebServiceOrders_Exception;
+use Exception;
 
 /**
  * MarketplaceWebServiceOrders_Client is an implementation of MarketplaceWebServiceOrders
@@ -258,14 +266,13 @@ class MarketplaceWebServiceOrders_Client implements MarketplaceWebServiceOrders_
     public function listOrders($request)
     {
         if (!($request instanceof MarketplaceWebServiceOrders_Model_ListOrdersRequest)) {
-            require_once (dirname(__FILE__) . '/Model/ListOrdersRequest.php');
+            //require_once(dirname(__FILE__) . '/Model/MarketplaceWebServiceOrders_Model_ListOrdersRequest.php');
             $request = new MarketplaceWebServiceOrders_Model_ListOrdersRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'ListOrders';
         $httpResponse = $this->_invoke($parameters);
-
-        require_once (dirname(__FILE__) . '/Model/ListOrdersResponse.php');
+        //require_once(dirname(__FILE__) . '/Model/MarketplaceWebServiceOrders_Model_ListOrdersResponse.php');
         $response = MarketplaceWebServiceOrders_Model_ListOrdersResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
@@ -537,7 +544,7 @@ class MarketplaceWebServiceOrders_Client implements MarketplaceWebServiceOrders_
     {
         try {
             if (empty($this->_config['ServiceURL'])) {
-                require_once (dirname(__FILE__) . '/Exception.php');
+                //require_once(dirname(__FILE__) . '/MarketplaceWebServiceOrders_Exception.php');
                 throw new MarketplaceWebServiceOrders_Exception(
                     array ('ErrorCode' => 'InvalidServiceURL',
                            'Message' => "Missing serviceUrl configuration value. You may obtain a list of valid MWS URLs by consulting the MWS Developer's Guide, or reviewing the sample code published along side this library."));
@@ -560,7 +567,7 @@ class MarketplaceWebServiceOrders_Client implements MarketplaceWebServiceOrders_
         } catch (MarketplaceWebServiceOrders_Exception $se) {
             throw $se;
         } catch (Exception $t) {
-            require_once (dirname(__FILE__) . '/Exception.php');
+            //require_once(dirname(__FILE__) . '/MarketplaceWebServiceOrders_Exception.php');
             throw new MarketplaceWebServiceOrders_Exception(array('Exception' => $t, 'Message' => $t->getMessage()));
         }
     }
@@ -587,7 +594,7 @@ class MarketplaceWebServiceOrders_Client implements MarketplaceWebServiceOrders_
             $exProps["Message"] = "Internal Error";
         }
 
-        require_once (dirname(__FILE__) . '/Exception.php');
+        require_once(dirname(__FILE__) . '/MarketplaceWebServiceOrders_Exception.php');
         return new MarketplaceWebServiceOrders_Exception($exProps);
     }
 
@@ -652,7 +659,7 @@ class MarketplaceWebServiceOrders_Client implements MarketplaceWebServiceOrders_
         $response = curl_exec($ch);
 
         if($response === false) {
-            require_once (dirname(__FILE__) . '/Exception.php');
+            //require_once(dirname(__FILE__) . '/MarketplaceWebServiceOrders_Exception.php');
             $exProps["Message"] = curl_error($ch);
             $exProps["ErrorType"] = "HTTP";
             curl_close($ch);
@@ -701,10 +708,9 @@ class MarketplaceWebServiceOrders_Client implements MarketplaceWebServiceOrders_
                 $body = $responseComponents[++$count];
             }
         }
-        
         //If the body is null here then we were unable to parse the response and will throw an exception
         if($body == null){
-            require_once (dirname(__FILE__) . '/Exception.php');
+            //require_once(dirname(__FILE__) . '/MarketplaceWebServiceOrders_Exception.php');
             $exProps["Message"] = "Failed to parse valid HTTP response (" . $response . ")";
             $exProps["ErrorType"] = "HTTP";
             throw new MarketplaceWebServiceOrders_Exception($exProps);
@@ -767,8 +773,8 @@ class MarketplaceWebServiceOrders_Client implements MarketplaceWebServiceOrders_
                 }
             }
         }
- 
-        require_once(dirname(__FILE__) . '/Model/ResponseHeaderMetadata.php');
+
+        //require_once(dirname(__FILE__) . '/Model/MarketplaceWebServiceOrders_Model_ResponseHeaderMetadata.php');
         return new MarketplaceWebServiceOrders_Model_ResponseHeaderMetadata(
           $headers['x-mws-request-id'],
           $headers['x-mws-response-context'],

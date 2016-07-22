@@ -16,12 +16,16 @@
  * Library Version: 2015-09-24
  * Generated: Fri Sep 25 20:06:28 GMT 2015
  */
-
+namespace Osom\Sdk_Mws\MarketplaceWebServiceOrders\Model;
 /**
  *  @see MarketplaceWebServiceOrders_Model
  */
 
-require_once (dirname(__FILE__) . '/../Model.php');
+//require_once(dirname(__FILE__) . '/../MarketplaceWebServiceOrders_Model.php');
+use Osom\Sdk_Mws\MarketplaceWebServiceOrders\MarketplaceWebServiceOrders_Model;
+use DOMDocument;
+use DOMXPath;
+use Exception;
 
 
 /**
