@@ -71,9 +71,13 @@ class Orders
                 $request->setMarketplaceId($this->marketplaceIdArray);
                 if(isset($parameters['CreatedAfter']) && !empty($parameters['CreatedAfter'])) {
                     $request->withCreatedAfter($parameters['CreatedAfter']);
+                    if(isset($parameters['OrderStatus']) && !empty($parameters['OrderStatus'])){
+                        $request->setOrderStatus($parameters['OrderStatus']);
+                    }
                 }elseif (isset($parameters['LastUpdatedAfter']) && !empty($parameters['LastUpdatedAfter'])) {
                     $request->withLastUpdatedAfter($parameters['LastUpdatedAfter']);
                 }
+
                 // object or array of parameters
                 $response = $this->invokeListOrders($this->service, $request);
                 break;
