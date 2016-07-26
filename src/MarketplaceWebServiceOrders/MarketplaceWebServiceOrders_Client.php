@@ -26,6 +26,8 @@ namespace  Osom\Sdk_Mws\MarketplaceWebServiceOrders;
 use Osom\Sdk_Mws\MarketplaceWebServiceOrders\MarketplaceWebServiceOrders_Interface;
 use Osom\Sdk_Mws\MarketplaceWebServiceOrders\Model\MarketplaceWebServiceOrders_Model_ListOrdersRequest;
 use Osom\Sdk_Mws\MarketplaceWebServiceOrders\Model\MarketplaceWebServiceOrders_Model_ListOrdersResponse;
+use Osom\Sdk_Mws\MarketplaceWebServiceOrders\Model\MarketplaceWebServiceOrders_Model_ListOrderItemsRequest;
+use Osom\Sdk_Mws\MarketplaceWebServiceOrders\Model\MarketplaceWebServiceOrders_Model_ListOrderItemsResponse;
 use Osom\Sdk_Mws\MarketplaceWebServiceOrders\Model\MarketplaceWebServiceOrders_Model_ResponseHeaderMetadata;
 use Osom\Sdk_Mws\MarketplaceWebServiceOrders\MarketplaceWebServiceOrders_Exception;
 use Exception;
@@ -168,14 +170,14 @@ class MarketplaceWebServiceOrders_Client implements MarketplaceWebServiceOrders_
     public function listOrderItems($request)
     {
         if (!($request instanceof MarketplaceWebServiceOrders_Model_ListOrderItemsRequest)) {
-            require_once (dirname(__FILE__) . '/Model/ListOrderItemsRequest.php');
+            //require_once(dirname(__FILE__) . '/Model/MarketplaceWebServiceOrders_Model_ListOrderItemsRequest.php');
             $request = new MarketplaceWebServiceOrders_Model_ListOrderItemsRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'ListOrderItems';
         $httpResponse = $this->_invoke($parameters);
 
-        require_once (dirname(__FILE__) . '/Model/ListOrderItemsResponse.php');
+        //require_once (dirname(__FILE__) . '/Model/MarketplaceWebServiceOrders_Model_ListOrderItemsResponse.php');
         $response = MarketplaceWebServiceOrders_Model_ListOrderItemsResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
@@ -599,7 +601,7 @@ class MarketplaceWebServiceOrders_Client implements MarketplaceWebServiceOrders_
             $exProps["Message"] = "Internal Error";
         }
 
-        require_once(dirname(__FILE__) . '/MarketplaceWebServiceOrders_Exception.php');
+        //require_once(dirname(__FILE__) . '/MarketplaceWebServiceOrders_Exception.php');
         return new MarketplaceWebServiceOrders_Exception($exProps);
     }
 

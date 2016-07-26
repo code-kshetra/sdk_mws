@@ -12,12 +12,22 @@ use Osom\Sdk_Mws\ProductManagement\Feeds;
 
 class OrdersTest extends PHPUnit_Framework_TestCase
 {
+
     public function testListOrders(){
         $orders = new Orders();
         //OrderStatus "" | "Pending" | "Unshipped" | "PartiallyShipped" | "Shipped" | "Canceled" | "Unfulfillable" | "PendingAvailability"
         $parameters = array('CreatedAfter' => date('c',strtotime('2016-07-01 00:00:00')),'OrderStatus'=>'Pending');
         $operation = 'ListOrders';
         $response = json_decode($orders->createRequestOrders($operation,$parameters));
+        $this->assertTrue($response->success);
+    }
+
+    public function testListOrderItems(){
+        $orders = new Orders();
+        $parameters = array('AmazonOrderId'=>'058-1233752-8214740');
+        $operation = 'ListOrderItems';
+        $response = json_decode($orders->createRequestOrders($operation,$parameters));
+        var_dump($response);
         $this->assertTrue($response->success);
     }
 
@@ -160,4 +170,5 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         var_dump($response);
         $this->assertTrue($response->success);
     }
+    
 }

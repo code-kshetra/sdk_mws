@@ -24,6 +24,7 @@ namespace Osom\Sdk_Mws\MarketplaceWebServiceOrders;
 //require_once(dirname(__FILE__) . '/MarketplaceWebServiceOrders_Interface.php');
 use Osom\Sdk_Mws\MarketplaceWebServiceOrders\MarketplaceWebServiceOrders_Interface;
 use Osom\Sdk_Mws\MarketplaceWebServiceOrders\Model\MarketplaceWebServiceOrders_Model_ListOrdersResponse;
+use Osom\Sdk_Mws\MarketplaceWebServiceOrders\Model\MarketplaceWebServiceOrders_Model_ListOrderItemsResponse;
 
 class MarketplaceWebServiceOrders_Mock implements MarketplaceWebServiceOrders_Interface
 {
@@ -75,7 +76,7 @@ class MarketplaceWebServiceOrders_Mock implements MarketplaceWebServiceOrders_In
      */
     public function listOrderItems($request)
     {
-        require_once (dirname(__FILE__) . '/Model/ListOrderItemsResponse.php');
+        //require_once(dirname(__FILE__) . '/Model/MarketplaceWebServiceOrders_Model_ListOrderItemsResponse.php');
         return MarketplaceWebServiceOrders_Model_ListOrderItemsResponse::fromXML($this->_invoke('ListOrderItems'));
     }
 

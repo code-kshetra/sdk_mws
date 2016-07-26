@@ -20,9 +20,12 @@
 /**
  *  @see MarketplaceWebServiceOrders_Model
  */
+namespace Osom\Sdk_Mws\MarketplaceWebServiceOrders\Model;
 
-require_once(dirname(__FILE__) . '/../MarketplaceWebServiceOrders_Model.php');
-
+//require_once(dirname(__FILE__) . '/../MarketplaceWebServiceOrders_Model.php');
+use Osom\Sdk_Mws\MarketplaceWebServiceOrders\MarketplaceWebServiceOrders_Model;
+use DOMDocument;
+use DOMXPath;
 
 /**
  * MarketplaceWebServiceOrders_Model_ListOrderItemsResponse

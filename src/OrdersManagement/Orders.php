@@ -13,9 +13,11 @@ include_once (substr(__DIR__,0,strpos(__DIR__, 'src')).'src/.config.php');
 
 use Osom\Sdk_Mws\MarketplaceWebServiceOrders\MarketplaceWebServiceOrders_Client;
 use Osom\Sdk_Mws\MarketplaceWebServiceOrders\Model\MarketplaceWebServiceOrders_Model_ListOrdersRequest;
+use Osom\Sdk_Mws\MarketplaceWebServiceOrders\Model\MarketplaceWebServiceOrders_Model_ListOrderItemsRequest;
 use Osom\Sdk_Mws\MarketplaceWebServiceOrders\MarketplaceWebServiceOrders_Interface;
 use Osom\Sdk_Mws\MarketplaceWebServiceOrders\MarketplaceWebServiceOrders_Mock;
 use DOMDocument;
+use SebastianBergmann\Exporter\Exception;
 
 
 class Orders
@@ -81,6 +83,14 @@ class Orders
                 // object or array of parameters
                 $response = $this->invokeListOrders($this->service, $request);
                 break;
+            case 'ListOrderItems':
+                $request = new MarketplaceWebServiceOrders_Model_ListOrderItemsRequest();
+                $request->setSellerId(MERCHANT_ID);
+                if(isset($parameters['AmazonOrderId']) && !empty($parameters['AmazonOrderId'])) {
+                    $request->withAmazonOrderId($parameters['AmazonOrderId']);
+                }
+                $response = $this->invokeListOrderItems($this->service, $request);
+                break;
             default:
                 $response = false;
                 break;
@@ -105,6 +115,45 @@ class Orders
             $responseJson["success"] = true;
             $responseJson["ResponseHeaderMetadata"] = $response->getResponseHeaderMetadata();
             $responseVar = json_encode($responseJson);
+
+        } catch (MarketplaceWebServiceOrders_Exception $ex) {
+            $responseJson['success'] = false;
+            $responseJson["caughtException"] = $ex->getMessage();
+            $responseJson["responseStatusCode"] = $ex->getStatusCode();
+            $responseJson["errorCode"] = $ex->getErrorCode();
+            $responseJson["errorType"] = $ex->getErrorType();
+            $responseJson["requestID"] = $ex->getRequestId();
+            $responseJson["xml"] = $ex->getXML();
+            $responseJson["responseHeaderMetadata"] = $ex->getResponseHeaderMetadata();
+            $responseVar = json_encode($responseJson);
+        }
+        return$responseVar;
+    }
+
+    function invokeListOrderItems(MarketplaceWebServiceOrders_Interface $service, $request)
+    {
+        $responseVar = null;
+        $responseJson = array();
+        try {
+            $response = $service->ListOrderItems($request);
+
+            //echo ("Service Response\n");
+            //echo ("=============================================================================\n");
+
+            $dom = new DOMDocument();
+            $dom->loadXML($response->toXML());
+            $dom->preserveWhiteSpace = false;
+            $dom->formatOutput = true;
+            //echo $dom->saveXML();
+            //echo("ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
+
+            $xml = simplexml_load_string($dom->saveXML());
+            $json = json_encode($xml);
+            $responseJson = json_decode($json,TRUE);
+            $responseJson["success"] = true;
+            $responseJson["ResponseHeaderMetadata"] = $response->getResponseHeaderMetadata();
+            $responseVar = json_encode($responseJson);
+
 
         } catch (MarketplaceWebServiceOrders_Exception $ex) {
             $responseJson['success'] = false;

@@ -5,9 +5,9 @@
         <AmazonOrderId>String</AmazonOrderId>
         <OrderItems>
             <OrderItem>
-                <ASIN>String</ASIN>
-                <SellerSKU>String</SellerSKU>
-                <OrderItemId>String</OrderItemId>
+                <ASIN>B00GW78HJG</ASIN>
+                <SellerSKU>LE063AB84KXFDFMX-214914</SellerSKU>
+                <OrderItemId>1</OrderItemId>
                 <Title>String</Title>
                 <QuantityOrdered>1</QuantityOrdered>
                 <QuantityShipped>1</QuantityShipped>
