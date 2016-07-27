@@ -15,6 +15,7 @@ use Osom\Sdk_Mws\OrdersManagement\Dummies\DummieOrderFulfillment;
 use Osom\Sdk_Mws\ProductManagement\Dummies\DummieImagesRequest;
 use Osom\Sdk_Mws\ProductManagement\Dummies\DummiePriceRequest;
 use Osom\Sdk_Mws\ProductManagement\Dummies\DummieProductRequest;
+use Osom\Sdk_Mws\ProductManagement\Dummies\DummieRelationshipRequest;
 use Osom\Sdk_Mws\ProductManagement\Dummies\DummieStockRequest;
 use SimpleXMLElement;
 
@@ -108,6 +109,14 @@ class MappingAttributesProducts{
                         $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["VariationData"]["Color"] = $data->ProductData_Color;
                         $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["VariationData"]["VariationTheme"] = $data->ProductData_VariationTheme;
                         $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["ClassificationData"]["Department"] = $data->ProductData_Gender;
+                        break;
+                    case 'Relationship':
+                        $dummieRelationship = new DummieRelationshipRequest();
+                        $dataDummie = $dummieRelationship->getStructure();
+                        $dataDummie["MessageID"] = (string)$countMessage;
+                        $dataDummie["OperationType"] = $data->OperationType;
+                        $dataDummie["Relationship"]["ParentSKU"] = $data->Relationship_ParentSKU;
+                        $dataDummie["Relationship"]["Relation"] = $data->Relationship_RelationsArray;
                         break;
                     case 'Price':
                         $dummiePrice = new DummiePriceRequest();

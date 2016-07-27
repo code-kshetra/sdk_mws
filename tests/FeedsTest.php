@@ -11,7 +11,6 @@ use Osom\Sdk_Mws\ProductManagement\Feeds;
 use Osom\Sdk_Mws\ProductManagement\MappingAttributesProducts;
 class FeedsTest extends PHPUnit_Framework_TestCase
 {
-    
     public function testSubmitProductFeeds(){
         $mapping = new MappingAttributesProducts();
         $feeds = new Feeds();
@@ -63,6 +62,42 @@ class FeedsTest extends PHPUnit_Framework_TestCase
         $feed = $mapping->createXmlfromJson($data);
 
         $feedType = '_POST_PRODUCT_DATA_';
+        $operation = 'SubmitFeed';
+        $response = json_decode($feeds->createRequestFeed($feed,$feedType,$operation));
+        $this->assertTrue($response->success);
+    }
+
+    public function testSubmitRelationFeeds(){
+        $mapping = new MappingAttributesProducts();
+        $feeds = new Feeds();
+
+        $data = [
+            [
+                "OperationType" => "Update",
+                "Relationship_ParentSKU" => "LE063AB84KXFDFMX",
+                "Relationship_RelationsArray" => [
+                    [
+                        "SKU" => "LE063AB84KXFDFMX-214914",
+                        "Type" => "Variation"
+                    ],
+                    [
+                        "SKU" => "LE063AB84KXFDFMX-214915",
+                        "Type" => "Variation"
+                    ],
+                    [
+                        "SKU" => "LE063AB84KXFDFMX-214916",
+                        "Type" => "Variation"
+                    ]
+                ]
+            ]
+        ];
+
+        (object)$data = json_decode(json_encode($data), FALSE);
+        $data = $mapping->buildRequestFeed($data,'Relationship');
+
+        $feed = $mapping->createXmlfromJson($data);
+
+        $feedType = '_POST_PRODUCT_RELATIONSHIP_DATA_';
         $operation = 'SubmitFeed';
         $response = json_decode($feeds->createRequestFeed($feed,$feedType,$operation));
         $this->assertTrue($response->success);
