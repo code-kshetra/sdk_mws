@@ -38,10 +38,10 @@ class DummieProductRequest
                 "ProductData" => [
                     "ClothingAccessories" => [
                         "VariationData" => [
-                            "Parentage" => "child",
+                            "Parentage" => "parent|child",
                             "Size" => "?",
                             "Color" => "?",
-                            "VariationTheme" => "SizeColor"
+                            "VariationTheme" => "Size|Color|SizeColor|Color-Itempackagequantity|Color-Material|Color-Patternname|ColorSize|Itempackagequantity|Itempackagequantity-Color|Itempackagequantity-Material|Itempackagequantity-Size|Material|Material-Color|Material-Patternname|Material-Size|Patternname|Patternname-Color|Patternname-Material|Patternname-Size|Size-Material|Size-Patternname|Cupsize|Cupsize-Color|Cupsize-Color-Size|Cupsize-Size"
                         ],
                         "ClassificationData" => [
                             "Department" => "?"

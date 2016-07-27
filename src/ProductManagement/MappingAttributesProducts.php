@@ -103,8 +103,10 @@ class MappingAttributesProducts{
                         $dataDummie["Product"]["DescriptionData"]["MSRP"]["value"] = $data->DescriptionData_Msrp;
                         $dataDummie["Product"]["DescriptionData"]["Manufacturer"] = $data->DescriptionData_Manufacturer;
                         $dataDummie["Product"]["DescriptionData"]["ItemType"] = $data->DescriptionData_ItemType;
+                        $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["VariationData"]["Parentage"] = $data->ProductData_Parentage;
                         $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["VariationData"]["Size"] = $data->ProductData_Size;
                         $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["VariationData"]["Color"] = $data->ProductData_Color;
+                        $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["VariationData"]["VariationTheme"] = $data->ProductData_VariationTheme;
                         $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["ClassificationData"]["Department"] = $data->ProductData_Gender;
                         break;
                     case 'Price':

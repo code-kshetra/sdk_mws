@@ -30,8 +30,10 @@ class FeedsTest extends PHPUnit_Framework_TestCase
                 "DescriptionData_Msrp" => "200.00",
                 "DescriptionData_Manufacturer" => "Example Product Manufacturer",
                 "DescriptionData_ItemType" => "example-item-type",
+                "ProductData_Parentage" => "child",
                 "ProductData_Size" => "34",
                 "ProductData_Color" => "Negro",
+                "ProductData_VariationTheme" => "SizeColor",
                 "ProductData_Gender" => "mujeres"
             ],
             [
@@ -47,8 +49,10 @@ class FeedsTest extends PHPUnit_Framework_TestCase
                 "DescriptionData_Msrp" => "250.00",
                 "DescriptionData_Manufacturer" => "Example Product Manufacturer",
                 "DescriptionData_ItemType" => "example-item-type",
+                "ProductData_Parentage" => "child",
                 "ProductData_Size" => "34",
                 "ProductData_Color" => "Negro",
+                "ProductData_VariationTheme" => "SizeColor",
                 "ProductData_Gender" => "mujeres"
             ]
         ];
