@@ -71,8 +71,14 @@ class Orders
                 $request = new MarketplaceWebServiceOrders_Model_ListOrdersRequest();
                 $request->setSellerId(MERCHANT_ID);
                 $request->setMarketplaceId($this->marketplaceIdArray);
-                if(isset($parameters['CreatedAfter']) && !empty($parameters['CreatedAfter'])) {
+                if(isset($parameters['CreatedAfter']) && !empty($parameters['CreatedAfter']) && !isset($parameters['CreatedBefore'])) {
                     $request->withCreatedAfter($parameters['CreatedAfter']);
+                    if(isset($parameters['OrderStatus']) && !empty($parameters['OrderStatus'])){
+                        $request->setOrderStatus($parameters['OrderStatus']);
+                    }
+                }elseif (isset($parameters['CreatedAfter']) && !empty($parameters['CreatedAfter']) && isset($parameters['CreatedBefore']) && !empty($parameters['CreatedBefore'])){
+                    $request->withCreatedAfter($parameters['CreatedAfter']);
+                    $request->withCreatedBefore($parameters['CreatedBefore']);
                     if(isset($parameters['OrderStatus']) && !empty($parameters['OrderStatus'])){
                         $request->setOrderStatus($parameters['OrderStatus']);
                     }

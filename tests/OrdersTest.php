@@ -16,7 +16,8 @@ class OrdersTest extends PHPUnit_Framework_TestCase
     public function testListOrders(){
         $orders = new Orders();
         //OrderStatus "" | "Pending" | "Unshipped" | "PartiallyShipped" | "Shipped" | "Canceled" | "Unfulfillable" | "PendingAvailability"
-        $parameters = array('CreatedAfter' => date('c',strtotime('2016-07-01 00:00:00')),'OrderStatus'=>'Pending');
+        //$parameters = array('CreatedAfter' => date('c',strtotime('2016-07-01 00:00:00')),'OrderStatus'=>'Pending');
+        $parameters = array('CreatedAfter' => date('c',strtotime('2016-07-01 00:00:00')),'CreatedBefore' => date('c',strtotime('2016-07-02 00:00:00')),'OrderStatus'=>'Pending');
         $operation = 'ListOrders';
         $response = json_decode($orders->createRequestOrders($operation,$parameters));
         $this->assertTrue($response->success);
