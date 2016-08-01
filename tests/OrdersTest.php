@@ -171,5 +171,5 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         var_dump($response);
         $this->assertTrue($response->success);
     }
-    
+
 }
