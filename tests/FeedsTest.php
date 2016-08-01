@@ -24,7 +24,7 @@ class FeedsTest extends PHPUnit_Framework_TestCase
                 "DescriptionData_Title" => "Example Product Title",
                 "DescriptionData_Brand" => "Example Product Brand",
                 "DescriptionData_Description" => "This is an example product description",
-                "DescriptionData_BulletPoint" => "Example Bullet Point 1",
+                "DescriptionData_BulletPoint" => ["Example Bullet Point 1","Example Bullet Point 2","Example Bullet Point 3"],
                 "DescriptionData_Currency" => "MXN",
                 "DescriptionData_Msrp" => "200.00",
                 "DescriptionData_Manufacturer" => "Example Product Manufacturer",
@@ -43,7 +43,7 @@ class FeedsTest extends PHPUnit_Framework_TestCase
                 "DescriptionData_Title" => "Example Product Title",
                 "DescriptionData_Brand" => "Example Product Brand",
                 "DescriptionData_Description" => "This is an example product description",
-                "DescriptionData_BulletPoint" => "Example Bullet Point 1",
+                "DescriptionData_BulletPoint" => ["Example Bullet Point 1","Example Bullet Point 2","Example Bullet Point 3"],
                 "DescriptionData_Currency" => "MXN",
                 "DescriptionData_Msrp" => "250.00",
                 "DescriptionData_Manufacturer" => "Example Product Manufacturer",
@@ -58,6 +58,8 @@ class FeedsTest extends PHPUnit_Framework_TestCase
 
         (object)$data = json_decode(json_encode($data), FALSE);
         $data = $mapping->buildRequestFeed($data,'Product');
+        //var_dump($data);
+        //die();
 
         $feed = $mapping->createXmlfromJson($data);
 
@@ -66,6 +68,7 @@ class FeedsTest extends PHPUnit_Framework_TestCase
         $response = json_decode($feeds->createRequestFeed($feed,$feedType,$operation));
         $this->assertTrue($response->success);
     }
+
 
     public function testSubmitRelationFeeds(){
         $mapping = new MappingAttributesProducts();
@@ -102,6 +105,7 @@ class FeedsTest extends PHPUnit_Framework_TestCase
         $response = json_decode($feeds->createRequestFeed($feed,$feedType,$operation));
         $this->assertTrue($response->success);
     }
+
 
     public function testSubmitPriceFeeds(){
         $mapping = new MappingAttributesProducts();
@@ -140,6 +144,7 @@ class FeedsTest extends PHPUnit_Framework_TestCase
         $response = json_decode($feeds->createRequestFeed($feed,$feedType,$operation));
         $this->assertTrue($response->success);
     }
+
 
     public function testSubmitStockFeeds(){
         $mapping = new MappingAttributesProducts();
@@ -233,4 +238,5 @@ class FeedsTest extends PHPUnit_Framework_TestCase
         $response = json_decode($feeds->createRequestFeed('','',$operation, $parameters));
         $this->assertTrue($response->success);
     }
+
 }

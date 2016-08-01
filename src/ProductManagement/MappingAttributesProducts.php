@@ -44,36 +44,42 @@ class MappingAttributesProducts{
     }
     
     private function array_to_xml($jsonDataArray, &$xml_body_info, $parent = ''){
-        foreach ($jsonDataArray as $key => $value){
-            if (is_array($value)) {
-                if (array_key_exists('attribute', $value)) {
-                    $node = $xml_body_info->addChild($key, $value['value']);
-                    foreach ($value['attribute'] as $k => $v) {
-                        $node->addAttribute($k, $v);
-                    }
-                } else {
-                    if (!is_numeric($key)) {
-                        if(is_array($value)){
-                            $cont = 0;
-                            foreach(array_keys($value) as $k){
-                                if(is_numeric($k)) $cont++;
-                            }
-                        }
-                        if($cont>0){
-                            for($i=0; $i < $cont; $i++){
-                                $subnode = $xml_body_info->addChild($key);
-                                $this->array_to_xml($value[$i], $subnode);
-                            }
-                        }else{
-                            $subnode = $xml_body_info->addChild($key);
-                            $this->array_to_xml($value, $subnode);
+        if(is_array($jsonDataArray)) {
+            foreach ($jsonDataArray as $key => $value) {
+                if (is_array($value)) {
+                    if (array_key_exists('attribute', $value)) {
+                        $node = $xml_body_info->addChild($key, $value['value']);
+                        foreach ($value['attribute'] as $k => $v) {
+                            $node->addAttribute($k, $v);
                         }
                     } else {
-                        $this->array_to_xml($value, $xml_body_info);
+                        if (!is_numeric($key)) {
+                            if (is_array($value)) {
+                                $cont = 0;
+                                foreach (array_keys($value) as $k) {
+                                    if (is_numeric($k)) $cont++;
+                                }
+                            }
+                            if ($cont > 0) {
+                                for ($i = 0; $i < $cont; $i++) {
+                                    if(is_array($value[$i])) {
+                                        $subnode = $xml_body_info->addChild($key);
+                                        $this->array_to_xml($value[$i], $subnode);
+                                    }else{
+                                        $xml_body_info->addChild($key,$value[$i]);
+                                    }
+                                }
+                            } else {
+                                $subnode = $xml_body_info->addChild($key);
+                                $this->array_to_xml($value, $subnode);
+                            }
+                        } else {
+                            $this->array_to_xml($value, $xml_body_info);
+                        }
                     }
+                } else {
+                    $xml_body_info->addChild($key, $value);
                 }
-            } else {
-                $xml_body_info->addChild($key, $value);
             }
         }
     }

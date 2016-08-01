@@ -4,74 +4,24 @@
         <DocumentVersion>1.01</DocumentVersion>
         <MerchantIdentifier>A140MHXDLIVF48</MerchantIdentifier>
     </Header>
-    <MessageType>Product</MessageType>
+    <MessageType>ProductImage</MessageType>
     <PurgeAndReplace>false</PurgeAndReplace>
     <Message>
         <MessageID>1</MessageID>
         <OperationType>Update</OperationType>
-        <Product>
-            <SKU>56790</SKU>
-            <StandardProductID>
-                <Type>ASIN</Type>
-                <Value>B0EXAMPLEG</Value>
-            </StandardProductID>
-            <ProductTaxCode>A_GEN_NOTAX</ProductTaxCode>
-            <DescriptionData>
-                <Title>Example Product Title</Title>
-                <Brand>Example Product Brand</Brand>
-                <Description>This is an example product description</Description>
-                <BulletPoint>Example Bullet Point 1</BulletPoint>
-                <MSRP currency="MXN">200.00</MSRP>
-                <Manufacturer>Example Product Manufacturer</Manufacturer>
-                <ItemType>example-item-type</ItemType>
-            </DescriptionData>
-            <ProductData>
-                <ClothingAccessories>
-                    <VariationData>
-                        <Parentage>child</Parentage>
-                        <Size>34</Size>
-                        <Color>Negro</Color>
-                        <VariationTheme>SizeColor</VariationTheme>
-                    </VariationData>
-                    <ClassificationData>
-                        <Department>mujeres</Department>
-                    </ClassificationData>
-                </ClothingAccessories>
-            </ProductData>
-        </Product>
+        <ProductImage>
+            <SKU>FL039SH43RUQDFMX-312919</SKU>
+            <ImageType>Main</ImageType>
+            <ImageLocation>http://static.dafiti.com.mx/p/calvin-klein-6965-312919-2-zoom2.jpg</ImageLocation>
+        </ProductImage>
     </Message>
     <Message>
         <MessageID>2</MessageID>
         <OperationType>Update</OperationType>
-        <Product>
-            <SKU>56791</SKU>
-            <StandardProductID>
-                <Type>ASIN</Type>
-                <Value>B0EXAMPLEG2</Value>
-            </StandardProductID>
-            <ProductTaxCode>A_GEN_NOTAX</ProductTaxCode>
-            <DescriptionData>
-                <Title>Example Product Title</Title>
-                <Brand>Example Product Brand</Brand>
-                <Description>This is an example product description</Description>
-                <BulletPoint>Example Bullet Point 1</BulletPoint>
-                <MSRP currency="MXN">250.00</MSRP>
-                <Manufacturer>Example Product Manufacturer</Manufacturer>
-                <ItemType>example-item-type</ItemType>
-            </DescriptionData>
-            <ProductData>
-                <ClothingAccessories>
-                    <VariationData>
-                        <Parentage>child</Parentage>
-                        <Size>34</Size>
-                        <Color>Negro</Color>
-                        <VariationTheme>SizeColor</VariationTheme>
-                    </VariationData>
-                    <ClassificationData>
-                        <Department>mujeres</Department>
-                    </ClassificationData>
-                </ClothingAccessories>
-            </ProductData>
-        </Product>
+        <ProductImage>
+            <SKU>FL039SH43RUQDFMX-312920</SKU>
+            <ImageType>Main</ImageType>
+            <ImageLocation>http://static.dafiti.com.mx/p/calvin-klein-6965-312920-2-zoom2.jpg</ImageLocation>
+        </ProductImage>
     </Message>
 </AmazonEnvelope>
