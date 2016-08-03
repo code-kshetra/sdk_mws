@@ -47,7 +47,7 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         $data = $mapping->buildRequestFeed($data,'OrderAcknowledgementSuccess');
 
         $feed = $mapping->createXmlfromJson($data);
-
+        
         $feedType = '_POST_ORDER_ACKNOWLEDGEMENT_DATA_';
         $operation = 'SubmitFeed';
         $response = json_decode($feedOrders->createRequestFeed($feed,$feedType,$operation));
