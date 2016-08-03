@@ -32,22 +32,19 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($response->success);
     }
 
-    public function testOrderAcknowledgement(){
+    public function testOrderAcknowledgementSuccess(){
         $mapping = new MappingAttributesProducts();
         $feedOrders = new Feeds();
 
         $data = [
             [
                 "AmazonOrderID" => "050-1234567-1234567",
-                "MerchantOrderID" => "1234567",
                 "StatusCode" => "Success",
-                "AmazonOrderItemCode" => "12345678901234",
-                "MerchantOrderItemID" => "1234567"
             ]
         ];
 
         (object)$data = json_decode(json_encode($data), FALSE);
-        $data = $mapping->buildRequestFeed($data,'OrderAcknowledgement');
+        $data = $mapping->buildRequestFeed($data,'OrderAcknowledgementSuccess');
 
         $feed = $mapping->createXmlfromJson($data);
 
@@ -171,5 +168,4 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         var_dump($response);
         $this->assertTrue($response->success);
     }
-
 }

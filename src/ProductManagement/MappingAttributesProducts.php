@@ -155,9 +155,16 @@ class MappingAttributesProducts{
                         $dataDummie["ProductImage"]["ImageType"] = $data->ImageType;
                         $dataDummie["ProductImage"]["ImageLocation"] = $data->ImageLocation;
                         break;
-                    case 'OrderAcknowledgement':
+                    case 'OrderAcknowledgementSuccess':
                         $dummieOrderAcknowledgement = new DummieOrderAcknowledgement();
-                        $dataDummie = $dummieOrderAcknowledgement->getStructure();
+                        $dataDummie = $dummieOrderAcknowledgement->getStructureSuccess();
+                        $dataDummie["MessageID"] = (string)$countMessage;
+                        $dataDummie["OrderAcknowledgement"]["AmazonOrderID"] = $data->AmazonOrderID;
+                        $dataDummie["OrderAcknowledgement"]["StatusCode"] = $data->StatusCode;
+                        break;
+                    case 'OrderAcknowledgementFailed':
+                        $dummieOrderAcknowledgement = new DummieOrderAcknowledgement();
+                        $dataDummie = $dummieOrderAcknowledgement->getStructureFailed();
                         $dataDummie["MessageID"] = (string)$countMessage;
                         $dataDummie["OrderAcknowledgement"]["AmazonOrderID"] = $data->AmazonOrderID;
                         $dataDummie["OrderAcknowledgement"]["MerchantOrderID"] = $data->MerchantOrderID;

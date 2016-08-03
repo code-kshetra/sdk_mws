@@ -10,7 +10,7 @@ namespace Osom\Sdk_Mws\OrdersManagement\Dummies;
 
 class DummieOrderAcknowledgement
 {
-    private $dataOrderAcknowledgementStructure =
+    private $dataOrderAcknowledgementStructureFailed =
         [
             "MessageID" => "?",
             "OrderAcknowledgement"=>[
@@ -24,11 +24,24 @@ class DummieOrderAcknowledgement
             ]
         ];
 
+    private $dataOrderAcknowledgementStructureSuccess =
+        [
+            "MessageID" => "?",
+            "OrderAcknowledgement"=>[
+                "AmazonOrderID" => "?",
+                "StatusCode" => "?"
+            ]
+        ];
+
     public function __construct(){
         return $this;
     }
 
-    public function getStructure(){
-        return $this->dataOrderAcknowledgementStructure;
+    public function getStructureFailed(){
+        return $this->dataOrderAcknowledgementStructureFailed;
+    }
+
+    public function getStructureSuccess(){
+        return $this->dataOrderAcknowledgementStructureSuccess;
     }
 }
