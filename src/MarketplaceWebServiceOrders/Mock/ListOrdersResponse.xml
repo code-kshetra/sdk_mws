@@ -22,7 +22,7 @@
                     <AddressLine3>506</AddressLine3>
                     <City>Ciuda de Mexico</City>
                     <County>Mexico</County>
-                    <District>String</District>
+                    <District>Azcapotzalco</District>
                     <StateOrRegion>Distrito Federal</StateOrRegion>
                     <PostalCode>02120</PostalCode>
                     <CountryCode>String</CountryCode>
@@ -81,7 +81,7 @@
                     <District>Miguel Hidalgo</District>
                     <StateOrRegion>Distrito Federal</StateOrRegion>
                     <PostalCode>11560</PostalCode>
-                    <CountryCode>String</CountryCode>
+                    <CountryCode>0</CountryCode>
                     <Phone>0445534337638</Phone>
                 </ShippingAddress>
                 <OrderTotal>
