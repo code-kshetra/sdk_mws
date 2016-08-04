@@ -19,12 +19,87 @@
                     </PointsMonetaryValue>
                 </PointsGranted>
                 <ItemPrice>
-                    <CurrencyCode>String</CurrencyCode>
-                    <Amount>String</Amount>
+                    <CurrencyCode>MXN</CurrencyCode>
+                    <Amount>231</Amount>
                 </ItemPrice>
                 <ShippingPrice>
+                    <CurrencyCode>MXN</CurrencyCode>
+                    <Amount>69</Amount>
+                </ShippingPrice>
+                <GiftWrapPrice>
                     <CurrencyCode>String</CurrencyCode>
                     <Amount>String</Amount>
+                </GiftWrapPrice>
+                <ItemTax>
+                    <CurrencyCode>String</CurrencyCode>
+                    <Amount>String</Amount>
+                </ItemTax>
+                <ShippingTax>
+                    <CurrencyCode>String</CurrencyCode>
+                    <Amount>String</Amount>
+                </ShippingTax>
+                <GiftWrapTax>
+                    <CurrencyCode>String</CurrencyCode>
+                    <Amount>String</Amount>
+                </GiftWrapTax>
+                <ShippingDiscount>
+                    <CurrencyCode>String</CurrencyCode>
+                    <Amount>String</Amount>
+                </ShippingDiscount>
+                <PromotionDiscount>
+                    <CurrencyCode>String</CurrencyCode>
+                    <Amount>String</Amount>
+                </PromotionDiscount>
+                <PromotionIds>
+                    <PromotionId>String</PromotionId>
+                </PromotionIds>
+                <CODFee>
+                    <CurrencyCode>String</CurrencyCode>
+                    <Amount>String</Amount>
+                </CODFee>
+                <CODFeeDiscount>
+                    <CurrencyCode>String</CurrencyCode>
+                    <Amount>String</Amount>
+                </CODFeeDiscount>
+                <GiftMessageText>String</GiftMessageText>
+                <GiftWrapLevel>String</GiftWrapLevel>
+                <InvoiceData>
+                    <InvoiceRequirement>String</InvoiceRequirement>
+                    <BuyerSelectedInvoiceCategory>String</BuyerSelectedInvoiceCategory>
+                    <InvoiceTitle>String</InvoiceTitle>
+                    <InvoiceInformation>String</InvoiceInformation>
+                </InvoiceData>
+                <ConditionNote>String</ConditionNote>
+                <ConditionId>String</ConditionId>
+                <ConditionSubtypeId>String</ConditionSubtypeId>
+                <ScheduledDeliveryStartDate>String</ScheduledDeliveryStartDate>
+                <ScheduledDeliveryEndDate>String</ScheduledDeliveryEndDate>
+                <PriceDesignation>String</PriceDesignation>
+                <BuyerCustomizedInfo>
+                    <CustomizedURL>String</CustomizedURL>
+                </BuyerCustomizedInfo>
+            </OrderItem>
+            <OrderItem>
+                <ASIN>B00GW78HJI</ASIN>
+                <SellerSKU>LE063AB84KXFDFMX-214915</SellerSKU>
+                <OrderItemId>2</OrderItemId>
+                <Title>String</Title>
+                <QuantityOrdered>1</QuantityOrdered>
+                <QuantityShipped>1</QuantityShipped>
+                <PointsGranted>
+                    <PointsNumber>1</PointsNumber>
+                    <PointsMonetaryValue>
+                        <CurrencyCode>String</CurrencyCode>
+                        <Amount>String</Amount>
+                    </PointsMonetaryValue>
+                </PointsGranted>
+                <ItemPrice>
+                    <CurrencyCode>MXN</CurrencyCode>
+                    <Amount>231</Amount>
+                </ItemPrice>
+                <ShippingPrice>
+                    <CurrencyCode>MXN</CurrencyCode>
+                    <Amount>69</Amount>
                 </ShippingPrice>
                 <GiftWrapPrice>
                     <CurrencyCode>String</CurrencyCode>

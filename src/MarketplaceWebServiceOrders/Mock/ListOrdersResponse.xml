@@ -10,30 +10,30 @@
                 <SellerOrderId>String</SellerOrderId>
                 <PurchaseDate>1969-07-21T02:56:03Z</PurchaseDate>
                 <LastUpdateDate>1969-07-21T02:56:03Z</LastUpdateDate>
-                <OrderStatus>String</OrderStatus>
+                <OrderStatus>Pending</OrderStatus>
                 <FulfillmentChannel>String</FulfillmentChannel>
                 <SalesChannel>String</SalesChannel>
                 <OrderChannel>String</OrderChannel>
                 <ShipServiceLevel>String</ShipServiceLevel>
                 <ShippingAddress>
-                    <Name>String</Name>
-                    <AddressLine1>String</AddressLine1>
-                    <AddressLine2>String</AddressLine2>
-                    <AddressLine3>String</AddressLine3>
-                    <City>String</City>
-                    <County>String</County>
+                    <Name>Octavio Pérez</Name>
+                    <AddressLine1>Priv San Carlos</AddressLine1>
+                    <AddressLine2>J3</AddressLine2>
+                    <AddressLine3>506</AddressLine3>
+                    <City>Ciuda de Mexico</City>
+                    <County>Mexico</County>
                     <District>String</District>
-                    <StateOrRegion>String</StateOrRegion>
-                    <PostalCode>String</PostalCode>
+                    <StateOrRegion>Distrito Federal</StateOrRegion>
+                    <PostalCode>02120</PostalCode>
                     <CountryCode>String</CountryCode>
-                    <Phone>String</Phone>
+                    <Phone>5541994445</Phone>
                 </ShippingAddress>
                 <OrderTotal>
-                    <CurrencyCode>String</CurrencyCode>
-                    <Amount>String</Amount>
+                    <CurrencyCode>MXN</CurrencyCode>
+                    <Amount>300</Amount>
                 </OrderTotal>
-                <NumberOfItemsShipped>1</NumberOfItemsShipped>
-                <NumberOfItemsUnshipped>1</NumberOfItemsUnshipped>
+                <NumberOfItemsShipped>2</NumberOfItemsShipped>
+                <NumberOfItemsUnshipped>2</NumberOfItemsUnshipped>
                 <PaymentExecutionDetail>
                     <PaymentExecutionDetailItem>
                         <Payment>
@@ -43,11 +43,11 @@
                         <PaymentMethod>String</PaymentMethod>
                     </PaymentExecutionDetailItem>
                 </PaymentExecutionDetail>
-                <PaymentMethod>String</PaymentMethod>
+                <PaymentMethod>Other</PaymentMethod>
                 <MarketplaceId>String</MarketplaceId>
-                <BuyerEmail>String</BuyerEmail>
-                <BuyerName>String</BuyerName>
-                <ShipmentServiceLevelCategory>String</ShipmentServiceLevelCategory>
+                <BuyerEmail>octavio.perez@osom.com</BuyerEmail>
+                <BuyerName>Octavio Perez</BuyerName>
+                <ShipmentServiceLevelCategory>Standard</ShipmentServiceLevelCategory>
                 <ShippedByAmazonTFM>true</ShippedByAmazonTFM>
                 <TFMShipmentStatus>String</TFMShipmentStatus>
                 <CbaDisplayableShippingLabel>String</CbaDisplayableShippingLabel>
@@ -66,30 +66,30 @@
                 <SellerOrderId>String</SellerOrderId>
                 <PurchaseDate>1969-07-21T02:56:03Z</PurchaseDate>
                 <LastUpdateDate>1969-07-21T02:56:03Z</LastUpdateDate>
-                <OrderStatus>String</OrderStatus>
+                <OrderStatus>Pending</OrderStatus>
                 <FulfillmentChannel>String</FulfillmentChannel>
                 <SalesChannel>String</SalesChannel>
                 <OrderChannel>String</OrderChannel>
                 <ShipServiceLevel>String</ShipServiceLevel>
                 <ShippingAddress>
-                    <Name>String</Name>
-                    <AddressLine1>String</AddressLine1>
-                    <AddressLine2>String</AddressLine2>
-                    <AddressLine3>String</AddressLine3>
-                    <City>String</City>
-                    <County>String</County>
-                    <District>String</District>
-                    <StateOrRegion>String</StateOrRegion>
-                    <PostalCode>String</PostalCode>
+                    <Name>Edgar Ortega</Name>
+                    <AddressLine1>Horacio</AddressLine1>
+                    <AddressLine2>340</AddressLine2>
+                    <AddressLine3>PH</AddressLine3>
+                    <City>Ciudad de Mexico</City>
+                    <County>Mexico</County>
+                    <District>Miguel Hidalgo</District>
+                    <StateOrRegion>Distrito Federal</StateOrRegion>
+                    <PostalCode>11560</PostalCode>
                     <CountryCode>String</CountryCode>
-                    <Phone>String</Phone>
+                    <Phone>0445534337638</Phone>
                 </ShippingAddress>
                 <OrderTotal>
-                    <CurrencyCode>String</CurrencyCode>
-                    <Amount>String</Amount>
+                    <CurrencyCode>MXN</CurrencyCode>
+                    <Amount>300</Amount>
                 </OrderTotal>
-                <NumberOfItemsShipped>1</NumberOfItemsShipped>
-                <NumberOfItemsUnshipped>1</NumberOfItemsUnshipped>
+                <NumberOfItemsShipped>2</NumberOfItemsShipped>
+                <NumberOfItemsUnshipped>2</NumberOfItemsUnshipped>
                 <PaymentExecutionDetail>
                     <PaymentExecutionDetailItem>
                         <Payment>
@@ -99,11 +99,11 @@
                         <PaymentMethod>String</PaymentMethod>
                     </PaymentExecutionDetailItem>
                 </PaymentExecutionDetail>
-                <PaymentMethod>String</PaymentMethod>
+                <PaymentMethod>Other</PaymentMethod>
                 <MarketplaceId>String</MarketplaceId>
-                <BuyerEmail>String</BuyerEmail>
-                <BuyerName>String</BuyerName>
-                <ShipmentServiceLevelCategory>String</ShipmentServiceLevelCategory>
+                <BuyerEmail>edgar.ortega@osom.com</BuyerEmail>
+                <BuyerName>Edgar Ortega</BuyerName>
+                <ShipmentServiceLevelCategory>Expedited</ShipmentServiceLevelCategory>
                 <ShippedByAmazonTFM>true</ShippedByAmazonTFM>
                 <TFMShipmentStatus>String</TFMShipmentStatus>
                 <CbaDisplayableShippingLabel>String</CbaDisplayableShippingLabel>
