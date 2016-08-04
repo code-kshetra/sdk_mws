@@ -30,7 +30,7 @@
                 </ShippingAddress>
                 <OrderTotal>
                     <CurrencyCode>MXN</CurrencyCode>
-                    <Amount>300</Amount>
+                    <Amount>600</Amount>
                 </OrderTotal>
                 <NumberOfItemsShipped>2</NumberOfItemsShipped>
                 <NumberOfItemsUnshipped>2</NumberOfItemsUnshipped>
@@ -86,7 +86,7 @@
                 </ShippingAddress>
                 <OrderTotal>
                     <CurrencyCode>MXN</CurrencyCode>
-                    <Amount>300</Amount>
+                    <Amount>600</Amount>
                 </OrderTotal>
                 <NumberOfItemsShipped>2</NumberOfItemsShipped>
                 <NumberOfItemsUnshipped>2</NumberOfItemsUnshipped>
