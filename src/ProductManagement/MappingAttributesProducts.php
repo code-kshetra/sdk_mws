@@ -164,6 +164,7 @@ class MappingAttributesProducts{
                         $dataDummie["MessageID"] = (string)$countMessage;
                         $dataDummie["OrderAcknowledgement"]["AmazonOrderID"] = $data->AmazonOrderID;
                         $dataDummie["OrderAcknowledgement"]["StatusCode"] = $data->StatusCode;
+                        $dataDummie["OrderAcknowledgement"]["Item"] = $data->Item;
                         break;
                     case 'OrderAcknowledgementFailed':
                         $dummieOrderAcknowledgement = new DummieOrderAcknowledgement();
@@ -172,8 +173,7 @@ class MappingAttributesProducts{
                         $dataDummie["OrderAcknowledgement"]["AmazonOrderID"] = $data->AmazonOrderID;
                         $dataDummie["OrderAcknowledgement"]["MerchantOrderID"] = $data->MerchantOrderID;
                         $dataDummie["OrderAcknowledgement"]["StatusCode"] = $data->StatusCode;
-                        $dataDummie["OrderAcknowledgement"]["Item"]["AmazonOrderItemCode"] = $data->AmazonOrderItemCode;
-                        $dataDummie["OrderAcknowledgement"]["Item"]["MerchantOrderItemID"] = $data->MerchantOrderItemID;
+                        $dataDummie["OrderAcknowledgement"]["Item"] = $data->Item;
                         break;
                     case 'OrderFulfillment':
                         $dummieOrderFulfillment = new DummieOrderFulfillment();

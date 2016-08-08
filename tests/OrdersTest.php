@@ -40,6 +40,10 @@ class OrdersTest extends PHPUnit_Framework_TestCase
             [
                 "AmazonOrderID" => "050-1234567-1234567",
                 "StatusCode" => "Success",
+                "Item" => [
+                    ["AmazonOrderItemCode" => "1"],
+                    ["AmazonOrderItemCode" => "2"]
+                ]
             ]
         ];
 
@@ -48,6 +52,38 @@ class OrdersTest extends PHPUnit_Framework_TestCase
 
         $feed = $mapping->createXmlfromJson($data);
         
+        $feedType = '_POST_ORDER_ACKNOWLEDGEMENT_DATA_';
+        $operation = 'SubmitFeed';
+        $response = json_decode($feedOrders->createRequestFeed($feed,$feedType,$operation));
+        $this->assertTrue($response->success);
+    }
+
+    public function testOrderAcknowledgementFailed(){
+        $mapping = new MappingAttributesProducts();
+        $feedOrders = new Feeds();
+
+        $data = [
+            [
+                "AmazonOrderID" => "050-1234567-1234567",
+                "StatusCode" => "Failure",
+                "Item" => [
+                    [
+                        "AmazonOrderItemCode" => "1",
+                        "CancelReason" => "NoInventory"
+                    ],
+                    [
+                        "AmazonOrderItemCode" => "2",
+                        "CancelReason" => "NoInventory"
+                    ]
+                ]
+            ]
+        ];
+
+        (object)$data = json_decode(json_encode($data), FALSE);
+        $data = $mapping->buildRequestFeed($data,'OrderAcknowledgementSuccess');
+
+        $feed = $mapping->createXmlfromJson($data);
+
         $feedType = '_POST_ORDER_ACKNOWLEDGEMENT_DATA_';
         $operation = 'SubmitFeed';
         $response = json_decode($feedOrders->createRequestFeed($feed,$feedType,$operation));
@@ -168,4 +204,5 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         var_dump($response);
         $this->assertTrue($response->success);
     }
+    
 }

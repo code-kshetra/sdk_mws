@@ -17,10 +17,7 @@ class DummieOrderAcknowledgement
                 "AmazonOrderID" => "?",
                 "MerchantOrderID" => "?",
                 "StatusCode" => "?",
-                "Item" => [
-                    "AmazonOrderItemCode" => "?",
-                    "MerchantOrderItemID" => "?"
-                ]
+                "Item" => "?"
             ]
         ];
 
@@ -29,7 +26,8 @@ class DummieOrderAcknowledgement
             "MessageID" => "?",
             "OrderAcknowledgement"=>[
                 "AmazonOrderID" => "?",
-                "StatusCode" => "?"
+                "StatusCode" => "?",
+                "Item" => "?"
             ]
         ];
 
