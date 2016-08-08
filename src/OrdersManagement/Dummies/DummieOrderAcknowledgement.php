@@ -15,7 +15,6 @@ class DummieOrderAcknowledgement
             "MessageID" => "?",
             "OrderAcknowledgement"=>[
                 "AmazonOrderID" => "?",
-                "MerchantOrderID" => "?",
                 "StatusCode" => "?",
                 "Item" => "?"
             ]

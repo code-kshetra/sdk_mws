@@ -171,7 +171,6 @@ class MappingAttributesProducts{
                         $dataDummie = $dummieOrderAcknowledgement->getStructureFailed();
                         $dataDummie["MessageID"] = (string)$countMessage;
                         $dataDummie["OrderAcknowledgement"]["AmazonOrderID"] = $data->AmazonOrderID;
-                        $dataDummie["OrderAcknowledgement"]["MerchantOrderID"] = $data->MerchantOrderID;
                         $dataDummie["OrderAcknowledgement"]["StatusCode"] = $data->StatusCode;
                         $dataDummie["OrderAcknowledgement"]["Item"] = $data->Item;
                         break;
