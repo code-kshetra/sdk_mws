@@ -15,19 +15,14 @@ class DummieOrderFulfillment
         [
             "MessageID" => "?",
             "OrderFulfillment" => [
-                "MerchantOrderID" => "?",
-                "MerchantFulfillmentID" => "?",
+                "AmazonOrderID" => "?",
                 "FulfillmentDate" => "?",
                 "FulfillmentData" => [
-                    "CarrierCode" => "?",
+                    "CarrierName" => "?",
                     "ShippingMethod" => "?",
                     "ShipperTrackingNumber" => "?"
                 ],
-                "Item" => [
-                    "MerchantOrderItemID" => "?",
-                    "MerchantFulfillmentItemID" => "?",
-                    "Quantity" => "?"
-                ]
+                "Item" => "?"
             ]
         ];
 

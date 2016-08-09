@@ -178,15 +178,12 @@ class MappingAttributesProducts{
                         $dummieOrderFulfillment = new DummieOrderFulfillment();
                         $dataDummie = $dummieOrderFulfillment->getStructure();
                         $dataDummie["MessageID"] = (string)$countMessage;
-                        $dataDummie["OrderFulfillment"]["MerchantOrderID"]= $data->MerchantOrderID;
-                        $dataDummie["OrderFulfillment"]["MerchantFulfillmentID"] = $data->MerchantFulfillmentID;
+                        $dataDummie["OrderFulfillment"]["AmazonOrderID"]= $data->AmazonOrderID;
                         $dataDummie["OrderFulfillment"]["FulfillmentDate"] = $data->FulfillmentDate;
-                        $dataDummie["OrderFulfillment"]["FulfillmentData"]["CarrierCode"] = $data->FulfillmentData_CarrierCode;
+                        $dataDummie["OrderFulfillment"]["FulfillmentData"]["CarrierName"] = $data->FulfillmentData_CarrierName;
                         $dataDummie["OrderFulfillment"]["FulfillmentData"]["ShippingMethod"] = $data->FulfillmentData_ShippingMethod;
                         $dataDummie["OrderFulfillment"]["FulfillmentData"]["ShipperTrackingNumber"] = $data->FulfillmentData_ShipperTrackingNumber;
-                        $dataDummie["OrderFulfillment"]["Item"]["MerchantOrderItemID"] = $data->Item_MerchantOrderItemID;
-                        $dataDummie["OrderFulfillment"]["Item"]["MerchantFulfillmentItemID"] = $data->MerchantFulfillmentItemID;
-                        $dataDummie["OrderFulfillment"]["Item"]["Quantity"] = $data->Item_Quantity;
+                        $dataDummie["OrderFulfillment"]["Item"] = $data->Item;
                         break;
                     case 'OrderAdjustment':
                         $dummieOrderAdjustment = new DummieOrderAdjustment();

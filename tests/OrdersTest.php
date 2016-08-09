@@ -12,7 +12,7 @@ use Osom\Sdk_Mws\ProductManagement\Feeds;
 
 class OrdersTest extends PHPUnit_Framework_TestCase
 {
-
+    /*
     public function testListOrders(){
         $orders = new Orders();
         //OrderStatus "" | "Pending" | "Unshipped" | "PartiallyShipped" | "Shipped" | "Canceled" | "Unfulfillable" | "PendingAvailability"
@@ -108,22 +108,28 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         var_dump($response);
         $this->assertTrue($response->success);
     }
-
+    */
     public function testOrderFulfillment(){
         $mapping = new MappingAttributesProducts();
         $feedOrders = new Feeds();
 
         $data = [
             [
-                "MerchantOrderID" => "1234567",
-                "MerchantFulfillmentID" => "1234567",
+                "AmazonOrderID" => "1234567",
                 "FulfillmentDate" => date('c',strtotime('2016-07-01 00:00:00')),
-                "FulfillmentData_CarrierCode" => "UPS",
-                "FulfillmentData_ShippingMethod" => "Second Day",
+                "FulfillmentData_CarrierName" => "UPS",
+                "FulfillmentData_ShippingMethod" => "Standar",
                 "FulfillmentData_ShipperTrackingNumber" => "1234567890",
-                "Item_MerchantOrderItemID" => "1234567",
-                "MerchantFulfillmentItemID" => "1234567",
-                "Item_Quantity" => "2"
+                "Item" => [
+                    [
+                        "AmazonOrderItemCode" => "1",
+                        "Quantity" => "1"
+                    ],
+                    [
+                        "AmazonOrderItemCode" => "2",
+                        "Quantity" => "1"
+                    ]
+                ]
             ]
         ];
 
@@ -131,11 +137,13 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         $data = $mapping->buildRequestFeed($data,'OrderFulfillment');
         $feed = $mapping->createXmlfromJson($data);
 
+
         $feedType = '_POST_ORDER_FULFILLMENT_DATA_';
         $operation = 'SubmitFeed';
         $response = json_decode($feedOrders->createRequestFeed($feed,$feedType,$operation));
         $this->assertTrue($response->success);
     }
+    /*
 
     public function testGetFeedSubmissionListOrderFulfillment(){
         $feeds = new Feeds();
@@ -145,6 +153,7 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         var_dump($response);
         $this->assertTrue($response->success);
     }
+
 
     public function testOrderFulfillmentResult(){
         $feeds = new Feeds();
@@ -204,5 +213,5 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         var_dump($response);
         $this->assertTrue($response->success);
     }
-    
+    */
 }
