@@ -12,7 +12,7 @@ use Osom\Sdk_Mws\ProductManagement\Feeds;
 
 class OrdersTest extends PHPUnit_Framework_TestCase
 {
-    /*
+
     public function testListOrders(){
         $orders = new Orders();
         //OrderStatus "" | "Pending" | "Unshipped" | "PartiallyShipped" | "Shipped" | "Canceled" | "Unfulfillable" | "PendingAvailability"
@@ -108,7 +108,7 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         var_dump($response);
         $this->assertTrue($response->success);
     }
-    */
+
     public function testOrderFulfillment(){
         $mapping = new MappingAttributesProducts();
         $feedOrders = new Feeds();
@@ -143,7 +143,7 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         $response = json_decode($feedOrders->createRequestFeed($feed,$feedType,$operation));
         $this->assertTrue($response->success);
     }
-    /*
+
 
     public function testGetFeedSubmissionListOrderFulfillment(){
         $feeds = new Feeds();
@@ -213,5 +213,4 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         var_dump($response);
         $this->assertTrue($response->success);
     }
-    */
 }
