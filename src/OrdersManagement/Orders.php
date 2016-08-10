@@ -58,7 +58,7 @@ class Orders
          * XML files available under MarketplaceWebServiceOrders/Mock tree
          *
          ***********************************************************************/
-        $this->service = new MarketplaceWebServiceOrders_Mock();
+        //$this->service = new MarketplaceWebServiceOrders_Mock();
 
         $this->marketplaceIdArray = array('A1AM78C64UM0Y8');
     }
