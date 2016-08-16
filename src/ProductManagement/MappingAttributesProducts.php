@@ -189,17 +189,8 @@ class MappingAttributesProducts{
                         $dummieOrderAdjustment = new DummieOrderAdjustment();
                         $dataDummie = $dummieOrderAdjustment->getStructure();
                         $dataDummie["MessageID"] = (string)$countMessage;
-                        $dataDummie["OrderAdjustment"]["MerchantOrderID"] = $data->MerchantOrderID;
-                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["MerchantOrderItemID"] = $data->AdjustedItem_MerchantOrderItemID;
-                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["MerchantAdjustmentItemID"] = $data->AdjustedItem_MerchantAdjustmentItemID;
-                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["AdjustmentReason"] = $data->AdjustedItem_AdjustmentReason;
-                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["ItemPriceAdjustments"]["Component"][0]["Amount"]["value"] = $data->ItemPriceAdjustments_Principal;
-                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["ItemPriceAdjustments"]["Component"][1]["Amount"]["value"] = $data->ItemPriceAdjustments_Shipping;
-                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["ItemPriceAdjustments"]["Component"][2]["Amount"]["value"] = $data->ItemPriceAdjustments_Tax;
-                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["ItemPriceAdjustments"]["Component"][3]["Amount"]["value"] = $data->ItemPriceAdjustments_Shipping_Tax;
-                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["PromotionAdjustments"]["PromotionClaimCode"] = $data->PromotionAdjustments_PromotionClaimCode;
-                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["PromotionAdjustments"]["MerchantPromotionID"] = $data->PromotionAdjustments_MerchantPromotionID;
-                        $dataDummie["OrderAdjustment"]["AdjustedItem"]["PromotionAdjustments"]["Component"][0]["Amount"]["value"] = $data->PromotionAdjustments_Principal;
+                        $dataDummie["OrderAdjustment"]["AmazonOrderID"] = $data->AmazonOrderID;
+                        $dataDummie["OrderAdjustment"]["AdjustedItem"] = $data->AdjustedItem;
                         break;
                 }
                 $countMessage++;

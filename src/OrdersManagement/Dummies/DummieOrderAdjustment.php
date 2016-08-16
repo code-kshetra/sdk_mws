@@ -15,57 +15,8 @@ class DummieOrderAdjustment
         [
             "MessageID" => "?",
             "OrderAdjustment" => [
-                "MerchantOrderID" => "?",
-                "AdjustedItem" => [
-                    "MerchantOrderItemID" => "?",
-                    "MerchantAdjustmentItemID" => "?",
-                    "AdjustmentReason" => "?",
-                    "ItemPriceAdjustments" => [
-                        "Component" => [
-                            [
-                                "Type" => "Principal",
-                                "Amount" => [
-                                    "attribute" => ["currency"=>"MXN"],
-                                    "value"=>"?",
-                                ]
-                            ],
-                            [
-                                "Type" => "Shipping",
-                                "Amount" => [
-                                    "attribute" => ["currency"=>"MXN"],
-                                    "value"=>"?",
-                                ]
-                            ],
-                            [
-                                "Type" => "Tax",
-                                "Amount" => [
-                                    "attribute" => ["currency"=>"MXN"],
-                                    "value"=>"?",
-                                ]
-                            ],
-                            [
-                                "Type" => "Shipping Tax",
-                                "Amount" => [
-                                    "attribute" => ["currency"=>"MXN"],
-                                    "value"=>"?",
-                                ]
-                            ]
-                        ]
-                    ],
-                    "PromotionAdjustments" => [
-                        "PromotionClaimCode" => "?",
-                        "MerchantPromotionID" => "?",
-                        "Component" => [
-                            [
-                                "Type" => "Principal",
-                                "Amount" => [
-                                    "attribute" => ["currency"=>"MXN"],
-                                    "value"=>"?",
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+                "AmazonOrderID" => "?",
+                "AdjustedItem" => []
             ]
         ];
 

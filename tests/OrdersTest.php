@@ -164,23 +164,60 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($response->success);
     }
 
+
     public function testOrderAdjustment(){
         $mapping = new MappingAttributesProducts();
         $feedOrders = new Feeds();
 
         $data = [
             [
-                "MerchantOrderID" => "23456",
-                "AdjustedItem_MerchantOrderItemID" => "23456",
-                "AdjustedItem_MerchantAdjustmentItemID" => "23456",
-                "AdjustedItem_AdjustmentReason" => "CustomerReturn",
-                "ItemPriceAdjustments_Principal" => "10.00",
-                "ItemPriceAdjustments_Shipping" => "3.50",
-                "ItemPriceAdjustments_Tax" => "1.30",
-                "ItemPriceAdjustments_Shipping_Tax" => "0.285",
-                "PromotionAdjustments_PromotionClaimCode" => "AA12456",
-                "PromotionAdjustments_MerchantPromotionID" => "12345678",
-                "PromotionAdjustments_Principal" => "-10.00"
+                "AmazonOrderID" => "23456",
+                "AdjustedItem" => [
+                    [
+                        "AmazonOrderItemCode" => "2345689",
+                        "AdjustmentReason" => "CustomerReturn",
+                        "ItemPriceAdjustments" => [
+                            "Component" => [
+                                [
+                                    "Type" => "Principal",
+                                    "Amount" => [
+                                        "attribute" => ["currency"=>"MXN"],
+                                        "value"=>"10",
+                                    ]
+                                ],
+                                [
+                                    "Type" => "Shipping",
+                                    "Amount" => [
+                                        "attribute" => ["currency"=>"MXN"],
+                                        "value"=>"10",
+                                    ]
+                                ],
+                            ]
+                        ]
+                    ],
+                    [
+                        "AmazonOrderItemCode" => "2345688",
+                        "AdjustmentReason" => "CustomerReturn",
+                        "ItemPriceAdjustments" => [
+                            "Component" => [
+                                [
+                                    "Type" => "Principal",
+                                    "Amount" => [
+                                        "attribute" => ["currency"=>"MXN"],
+                                        "value"=>"10",
+                                    ]
+                                ],
+                                [
+                                    "Type" => "Shipping",
+                                    "Amount" => [
+                                        "attribute" => ["currency"=>"MXN"],
+                                        "value"=>"10",
+                                    ]
+                                ],
+                            ]
+                        ]
+                    ]
+                ]
             ]
         ];
 
@@ -188,13 +225,15 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         $data = $mapping->buildRequestFeed($data,'OrderAdjustment');
 
         $feed = $mapping->createXmlfromJson($data);
+        //var_dump($feed);
+        //die();
 
         $feedType = '_POST_PAYMENT_ADJUSTMENT_DATA_';
         $operation = 'SubmitFeed';
         $response = json_decode($feedOrders->createRequestFeed($feed,$feedType,$operation));
-        var_dump($response);
         $this->assertTrue($response->success);
     }
+
 
     public function testGetFeedSubmissionListtestOrderAdjustment(){
         $feeds = new Feeds();
@@ -213,4 +252,5 @@ class OrdersTest extends PHPUnit_Framework_TestCase
         var_dump($response);
         $this->assertTrue($response->success);
     }
+
 }
