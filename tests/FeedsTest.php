@@ -16,7 +16,7 @@ class FeedsTest extends PHPUnit_Framework_TestCase
         $feeds = new Feeds();
 
         $data = [
-            [
+            /*[
                 "OperationType" => "Update",
                 "SKU" => "FL039SH43RUQDFMX-312919",
                 "StandarProductID_Type" => "EAN",
@@ -53,23 +53,43 @@ class FeedsTest extends PHPUnit_Framework_TestCase
                 "ProductData_Color" => "Negro",
                 "ProductData_VariationTheme" => "SizeColor",
                 "ProductData_Gender" => "mujeres"
+            ]*/
+            [
+                "OperationType" => "Update",
+                "SKU" => "FL039SH43RUQDFMX-312920",
+                "StandarProductID_Type" => "EAN",
+                "StandarProductID_Value" => "7500421081205",
+                "DescriptionData_Title" => "Example Product Title",
+                "DescriptionData_Brand" => "Example Product Brand",
+                "DescriptionData_Description" => "This is an example product description",
+                "DescriptionData_BulletPoint" => ["Example Bullet Point 1","Example Bullet Point 2","Example Bullet Point 3"],
+                "DescriptionData_Currency" => "MXN",
+                "DescriptionData_Msrp" => "250.00",
+                "DescriptionData_Manufacturer" => "Example Product Manufacturer",
+                "DescriptionData_ItemType" => "example-item-type",
+                "ProductData_ClothingType" => "Shoes",
+                "ProductData_Parentage" => "child",
+                "ProductData_Size" => "34",
+                "ProductData_Color" => "Negro",
+                "ProductData_VariationTheme" => "SizeColor",
+                "ProductData_Gender" => "mujeres"
             ]
         ];
 
         (object)$data = json_decode(json_encode($data), FALSE);
-        $data = $mapping->buildRequestFeed($data,'Product');
-        //var_dump($data);
-        //die();
+        $data = $mapping->buildRequestFeed($data,'ProductShoes');
 
         $feed = $mapping->createXmlfromJson($data);
 
+        var_dump($feed);
+        die();
         $feedType = '_POST_PRODUCT_DATA_';
         $operation = 'SubmitFeed';
         $response = json_decode($feeds->createRequestFeed($feed,$feedType,$operation));
         $this->assertTrue($response->success);
     }
 
-
+    /*
     public function testSubmitRelationFeeds(){
         $mapping = new MappingAttributesProducts();
         $feeds = new Feeds();
@@ -238,5 +258,5 @@ class FeedsTest extends PHPUnit_Framework_TestCase
         $response = json_decode($feeds->createRequestFeed('','',$operation, $parameters));
         $this->assertTrue($response->success);
     }
-
+    */
 }

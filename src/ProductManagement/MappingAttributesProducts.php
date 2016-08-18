@@ -119,6 +119,29 @@ class MappingAttributesProducts{
                         $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["VariationData"]["VariationTheme"] = $data->ProductData_VariationTheme;
                         $dataDummie["Product"]["ProductData"]["ClothingAccessories"]["ClassificationData"]["Department"] = $data->ProductData_Gender;
                         break;
+                    case 'ProductShoes':
+                        $dummieProduct = new DummieProductRequest();
+                        $dataDummie = $dummieProduct->getStructureShoes();
+                        $dataDummie["MessageID"] = (string)$countMessage;
+                        $dataDummie["OperationType"] = $data->OperationType;
+                        $dataDummie["Product"]["SKU"] = $data->SKU;
+                        $dataDummie["Product"]["StandardProductID"]["Type"] = $data->StandarProductID_Type;
+                        $dataDummie["Product"]["StandardProductID"]["Value"] = $data->StandarProductID_Value;
+                        $dataDummie["Product"]["DescriptionData"]["Title"] = $data->DescriptionData_Title;
+                        $dataDummie["Product"]["DescriptionData"]["Brand"] = $data->DescriptionData_Brand;
+                        $dataDummie["Product"]["DescriptionData"]["Description"] = $data->DescriptionData_Description;
+                        $dataDummie["Product"]["DescriptionData"]["BulletPoint"] = $data->DescriptionData_BulletPoint;
+                        $dataDummie["Product"]["DescriptionData"]["MSRP"]["attribute"]["currency"] = $data->DescriptionData_Currency;
+                        $dataDummie["Product"]["DescriptionData"]["MSRP"]["value"] = $data->DescriptionData_Msrp;
+                        $dataDummie["Product"]["DescriptionData"]["Manufacturer"] = $data->DescriptionData_Manufacturer;
+                        $dataDummie["Product"]["DescriptionData"]["ItemType"] = $data->DescriptionData_ItemType;
+                        $dataDummie["Product"]["ProductData"]["Shoes"]["ClothingType"] = $data->ProductData_ClothingType;
+                        $dataDummie["Product"]["ProductData"]["Shoes"]["VariationData"]["Parentage"] = $data->ProductData_Parentage;
+                        $dataDummie["Product"]["ProductData"]["Shoes"]["VariationData"]["Size"] = $data->ProductData_Size;
+                        $dataDummie["Product"]["ProductData"]["Shoes"]["VariationData"]["Color"] = $data->ProductData_Color;
+                        $dataDummie["Product"]["ProductData"]["Shoes"]["VariationData"]["VariationTheme"] = $data->ProductData_VariationTheme;
+                        $dataDummie["Product"]["ProductData"]["Shoes"]["ClassificationData"]["Department"] = $data->ProductData_Gender;
+                        break;
                     case 'Relationship':
                         $dummieRelationship = new DummieRelationshipRequest();
                         $dataDummie = $dummieRelationship->getStructure();
