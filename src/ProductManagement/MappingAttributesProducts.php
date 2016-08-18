@@ -92,6 +92,9 @@ class MappingAttributesProducts{
             if(strcmp($type,'OrderAcknowledgementSuccess') === 0 || strcmp($type,'OrderAcknowledgementFailed') === 0){
                 $request["MessageType"] = 'OrderAcknowledgement';
             }
+            if(strcmp($type,'ProductShoes') === 0){
+                $request["MessageType"] = 'Product';
+            }
             $request["PurgeAndReplace"] = $purgeAndReplace;
             $request["Message"] = [];   
             $countMessage = 1;
