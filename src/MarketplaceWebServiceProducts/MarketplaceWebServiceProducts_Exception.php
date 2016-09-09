@@ -16,13 +16,15 @@
  * Library Version: 2016-06-01
  * Generated: Mon Jun 13 10:07:56 PDT 2016
  */
-
+namespace Osom\Sdk_Mws\MarketplaceWebServiceProducts;
 
 /**
  * Marketplace Web Service Products Exception provides details of errors
  * returned by Marketplace Web Service Products service
  *
  */
+use Exception;
+
 class MarketplaceWebServiceProducts_Exception extends Exception
 
 {

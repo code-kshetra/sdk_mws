@@ -16,6 +16,7 @@
  * Library Version: 2016-06-01
  * Generated: Mon Jun 13 10:07:56 PDT 2016
  */
+namespace Osom\Sdk_Mws\MarketplaceWebServiceProducts\Model;
 
 class MarketplaceWebServiceProducts_Model_ResponseHeaderMetadata {
 
@@ -29,7 +30,7 @@ class MarketplaceWebServiceProducts_Model_ResponseHeaderMetadata {
   private $metadata = array();
 
   public function __construct($requestId = null, $responseContext = null, $timestamp = null,
-                              $quotaMax = null, $quotaMax = null, $quotaResetsAt = null) {
+                              $quotaMax = null, $quotaResetsAt = null) {
     $this->metadata[self::REQUEST_ID] = $requestId;
     $this->metadata[self::RESPONSE_CONTEXT] = $responseContext;
     $this->metadata[self::TIMESTAMP] = $timestamp;

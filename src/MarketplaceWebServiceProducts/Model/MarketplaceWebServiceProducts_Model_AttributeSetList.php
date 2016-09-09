@@ -16,95 +16,96 @@
  * Library Version: 2016-06-01
  * Generated: Mon Jun 13 10:07:56 PDT 2016
  */
-
+namespace Osom\Sdk_Mws\MarketplaceWebServiceProducts\Model;
 /**
  *  @see MarketplaceWebServiceProducts_Model
  */
 
-require_once (dirname(__FILE__) . '/../Model.php');
+//require_once(dirname(__FILE__) . '/../MarketplaceWebServiceProducts_Model.php');
+use Osom\Sdk_Mws\MarketplaceWebServiceProducts\MarketplaceWebServiceProducts_Model;
 
 
 /**
- * MarketplaceWebServiceProducts_Model_ProductList
+ * MarketplaceWebServiceProducts_Model_AttributeSetList
  * 
  * Properties:
  * <ul>
  * 
- * <li>Product: array</li>
+ * <li>Any: array</li>
  *
  * </ul>
  */
 
- class MarketplaceWebServiceProducts_Model_ProductList extends MarketplaceWebServiceProducts_Model {
+ class MarketplaceWebServiceProducts_Model_AttributeSetList extends MarketplaceWebServiceProducts_Model {
 
     public function __construct($data = null)
     {
     $this->_fields = array (
-    'Product' => array('FieldValue' => array(), 'FieldType' => array('MarketplaceWebServiceProducts_Model_Product')),
+    'Any' => array('FieldValue' => array(), 'FieldType' => array('object')),
     );
     parent::__construct($data);
     }
 
     /**
-     * Get the value of the Product property.
+     * Get the value of the Any property.
      *
-     * @return List<Product> Product.
+     * @return List<Object> Any.
      */
-    public function getProduct()
+    public function getAny()
     {
-        if ($this->_fields['Product']['FieldValue'] == null)
+        if ($this->_fields['Any']['FieldValue'] == null)
         {
-            $this->_fields['Product']['FieldValue'] = array();
+            $this->_fields['Any']['FieldValue'] = array();
         }
-        return $this->_fields['Product']['FieldValue'];
+        return $this->_fields['Any']['FieldValue'];
     }
 
     /**
-     * Set the value of the Product property.
+     * Set the value of the Any property.
      *
-     * @param array product
+     * @param array any
      * @return this instance
      */
-    public function setProduct($value)
+    public function setAny($value)
     {
         if (!$this->_isNumericArray($value)) {
             $value = array ($value);
         }
-        $this->_fields['Product']['FieldValue'] = $value;
+        $this->_fields['Any']['FieldValue'] = $value;
         return $this;
     }
 
     /**
-     * Clear Product.
+     * Clear Any.
      */
-    public function unsetProduct()
+    public function unsetAny()
     {
-        $this->_fields['Product']['FieldValue'] = array();
+        $this->_fields['Any']['FieldValue'] = array();
     }
 
     /**
-     * Check to see if Product is set.
+     * Check to see if Any is set.
      *
-     * @return true if Product is set.
+     * @return true if Any is set.
      */
-    public function isSetProduct()
+    public function isSetAny()
     {
-                return !empty($this->_fields['Product']['FieldValue']);
+                return !empty($this->_fields['Any']['FieldValue']);
             }
 
     /**
-     * Add values for Product, return this.
+     * Add values for Any, return this.
      *
-     * @param product
+     * @param any
      *             New values to add.
      *
      * @return This instance.
      */
-    public function withProduct()
+    public function withAny()
     {
-        foreach (func_get_args() as $Product)
+        foreach (func_get_args() as $Any)
         {
-            $this->_fields['Product']['FieldValue'][] = $Product;
+            $this->_fields['Any']['FieldValue'][] = $Any;
         }
         return $this;
     }
