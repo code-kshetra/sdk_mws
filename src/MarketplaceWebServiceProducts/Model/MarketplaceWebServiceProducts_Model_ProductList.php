@@ -16,95 +16,96 @@
  * Library Version: 2016-06-01
  * Generated: Mon Jun 13 10:07:56 PDT 2016
  */
-
+namespace Osom\Sdk_Mws\MarketplaceWebServiceProducts\Model;
 /**
  *  @see MarketplaceWebServiceProducts_Model
  */
 
-require_once (dirname(__FILE__) . '/../Model.php');
+//require_once(dirname(__FILE__) . '/../MarketplaceWebServiceProducts_Model.php');
+use Osom\Sdk_Mws\MarketplaceWebServiceProducts\MarketplaceWebServiceProducts_Model;
 
 
 /**
- * MarketplaceWebServiceProducts_Model_IdListType
+ * MarketplaceWebServiceProducts_Model_ProductList
  * 
  * Properties:
  * <ul>
  * 
- * <li>Id: array</li>
+ * <li>Product: array</li>
  *
  * </ul>
  */
 
- class MarketplaceWebServiceProducts_Model_IdListType extends MarketplaceWebServiceProducts_Model {
+ class MarketplaceWebServiceProducts_Model_ProductList extends MarketplaceWebServiceProducts_Model {
 
     public function __construct($data = null)
     {
     $this->_fields = array (
-    'Id' => array('FieldValue' => array(), 'FieldType' => array('string')),
+    'Product' => array('FieldValue' => array(), 'FieldType' => array('MarketplaceWebServiceProducts_Model_Product')),
     );
     parent::__construct($data);
     }
 
     /**
-     * Get the value of the Id property.
+     * Get the value of the Product property.
      *
-     * @return List<String> Id.
+     * @return List<Product> Product.
      */
-    public function getId()
+    public function getProduct()
     {
-        if ($this->_fields['Id']['FieldValue'] == null)
+        if ($this->_fields['Product']['FieldValue'] == null)
         {
-            $this->_fields['Id']['FieldValue'] = array();
+            $this->_fields['Product']['FieldValue'] = array();
         }
-        return $this->_fields['Id']['FieldValue'];
+        return $this->_fields['Product']['FieldValue'];
     }
 
     /**
-     * Set the value of the Id property.
+     * Set the value of the Product property.
      *
-     * @param array id
+     * @param array product
      * @return this instance
      */
-    public function setId($value)
+    public function setProduct($value)
     {
         if (!$this->_isNumericArray($value)) {
             $value = array ($value);
         }
-        $this->_fields['Id']['FieldValue'] = $value;
+        $this->_fields['Product']['FieldValue'] = $value;
         return $this;
     }
 
     /**
-     * Clear Id.
+     * Clear Product.
      */
-    public function unsetId()
+    public function unsetProduct()
     {
-        $this->_fields['Id']['FieldValue'] = array();
+        $this->_fields['Product']['FieldValue'] = array();
     }
 
     /**
-     * Check to see if Id is set.
+     * Check to see if Product is set.
      *
-     * @return true if Id is set.
+     * @return true if Product is set.
      */
-    public function isSetId()
+    public function isSetProduct()
     {
-                return !empty($this->_fields['Id']['FieldValue']);
+                return !empty($this->_fields['Product']['FieldValue']);
             }
 
     /**
-     * Add values for Id, return this.
+     * Add values for Product, return this.
      *
-     * @param id
+     * @param product
      *             New values to add.
      *
      * @return This instance.
      */
-    public function withId()
+    public function withProduct()
     {
-        foreach (func_get_args() as $Id)
+        foreach (func_get_args() as $Product)
         {
-            $this->_fields['Id']['FieldValue'][] = $Id;
+            $this->_fields['Product']['FieldValue'][] = $Product;
         }
         return $this;
     }

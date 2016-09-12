@@ -16,10 +16,15 @@
  * Library Version: 2016-06-01
  * Generated: Mon Jun 13 10:07:56 PDT 2016
  */
-
+namespace Osom\Sdk_Mws\MarketplaceWebServiceProducts;
 /**
  * MarketplaceWebServiceProducts_Model - base class for all model classes
  */
+use Exception;
+use DOMDocument;
+use DOMElement;
+use DOMXPath;
+
 abstract class MarketplaceWebServiceProducts_Model
 {
 
@@ -117,7 +122,8 @@ abstract class MarketplaceWebServiceProducts_Model
                        $elements = $xpath->query("./*[local-name()='$fieldName']", $dom);
                     }
                     if ($elements->length >= 1) {
-                        require_once (dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . str_replace('_', DIRECTORY_SEPARATOR, $fieldType[0]) . ".php");
+                        //require_once (dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . str_replace('_', DIRECTORY_SEPARATOR, $fieldType[0]) . ".php");
+                        $fieldType[0] = "Osom\\Sdk_Mws\\MarketplaceWebServiceProducts\\Model\\".$fieldType[0];
                         foreach ($elements as $element) {
                             $this->_fields[$fieldName]['FieldValue'][] = new $fieldType[0]($element);
                         }
@@ -140,7 +146,8 @@ abstract class MarketplaceWebServiceProducts_Model
                 if ($this->_isComplexType($fieldType)) {
                     $elements = $xpath->query("./*[local-name()='$fieldName']", $dom);
                     if ($elements->length == 1) {
-                        require_once (dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . str_replace('_', DIRECTORY_SEPARATOR, $fieldType) . ".php");
+                        //require_once (dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . str_replace('_', DIRECTORY_SEPARATOR, $fieldType) . ".php");
+                        $fieldType = "Osom\\Sdk_Mws\\MarketplaceWebServiceProducts\\Model\\".$fieldType;
                         $this->_fields[$fieldName]['FieldValue'] = new $fieldType($elements->item(0));
                     }   
                 } else {

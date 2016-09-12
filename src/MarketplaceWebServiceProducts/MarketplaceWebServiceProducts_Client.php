@@ -16,11 +16,17 @@
  * Library Version: 2016-06-01
  * Generated: Mon Jun 13 10:07:56 PDT 2016
  */
-
+namespace  Osom\Sdk_Mws\MarketplaceWebServiceProducts;
 /**
  *  @see MarketplaceWebServiceProducts_Interface
  */
-require_once (dirname(__FILE__) . '/Interface.php');
+//require_once(dirname(__FILE__) . '/MarketplaceWebServiceProducts_Interface.php');
+use Osom\Sdk_Mws\MarketplaceWebServiceProducts\Model\MarketplaceWebServiceProducts_Model_ResponseHeaderMetadata;
+use Osom\Sdk_Mws\MarketplaceWebServiceProducts\MarketplaceWebServiceProducts_Exception;
+use Osom\Sdk_Mws\MarketplaceWebServiceProducts\MarketplaceWebServiceProducts_Interface;
+use Osom\Sdk_Mws\MarketplaceWebServiceProducts\Model\MarketplaceWebServiceProducts_Model_GetMatchingProductForIdRequest;
+use Osom\Sdk_Mws\MarketplaceWebServiceProducts\Model\MarketplaceWebServiceProducts_Model_GetMatchingProductForIdResponse;
+use Exception;
 
 /**
  * MarketplaceWebServiceProducts_Client is an implementation of MarketplaceWebServiceProducts
@@ -408,7 +414,7 @@ class MarketplaceWebServiceProducts_Client implements MarketplaceWebServiceProdu
     public function getMatchingProduct($request)
     {
         if (!($request instanceof MarketplaceWebServiceProducts_Model_GetMatchingProductRequest)) {
-            require_once (dirname(__FILE__) . '/Model/GetMatchingProductRequest.php');
+            require_once(dirname(__FILE__) . '/Model/MarketplaceWebServiceProducts_Model_GetMatchingProductRequest.php');
             $request = new MarketplaceWebServiceProducts_Model_GetMatchingProductRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
@@ -463,14 +469,15 @@ class MarketplaceWebServiceProducts_Client implements MarketplaceWebServiceProdu
     public function getMatchingProductForId($request)
     {
         if (!($request instanceof MarketplaceWebServiceProducts_Model_GetMatchingProductForIdRequest)) {
-            require_once (dirname(__FILE__) . '/Model/GetMatchingProductForIdRequest.php');
+            //require_once(dirname(__FILE__) . '/Model/MarketplaceWebServiceProducts_Model_GetMatchingProductForIdRequest.php');
             $request = new MarketplaceWebServiceProducts_Model_GetMatchingProductForIdRequest($request);
         }
+
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'GetMatchingProductForId';
         $httpResponse = $this->_invoke($parameters);
 
-        require_once (dirname(__FILE__) . '/Model/GetMatchingProductForIdResponse.php');
+        //require_once(dirname(__FILE__) . '/Model/MarketplaceWebServiceProducts_Model_GetMatchingProductForIdResponse.php');
         $response = MarketplaceWebServiceProducts_Model_GetMatchingProductForIdResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
@@ -1035,7 +1042,7 @@ class MarketplaceWebServiceProducts_Client implements MarketplaceWebServiceProdu
     {
         try {
             if (empty($this->_config['ServiceURL'])) {
-                require_once (dirname(__FILE__) . '/Exception.php');
+                //require_once(dirname(__FILE__) . '/MarketplaceWebServiceProducts_Exception.php');
                 throw new MarketplaceWebServiceProducts_Exception(
                     array ('ErrorCode' => 'InvalidServiceURL',
                            'Message' => "Missing serviceUrl configuration value. You may obtain a list of valid MWS URLs by consulting the MWS Developer's Guide, or reviewing the sample code published along side this library."));
@@ -1058,7 +1065,7 @@ class MarketplaceWebServiceProducts_Client implements MarketplaceWebServiceProdu
         } catch (MarketplaceWebServiceProducts_Exception $se) {
             throw $se;
         } catch (Exception $t) {
-            require_once (dirname(__FILE__) . '/Exception.php');
+            //require_once(dirname(__FILE__) . '/MarketplaceWebServiceProducts_Exception.php');
             throw new MarketplaceWebServiceProducts_Exception(array('Exception' => $t, 'Message' => $t->getMessage()));
         }
     }
@@ -1085,7 +1092,7 @@ class MarketplaceWebServiceProducts_Client implements MarketplaceWebServiceProdu
             $exProps["Message"] = "Internal Error";
         }
 
-        require_once (dirname(__FILE__) . '/Exception.php');
+        require_once(dirname(__FILE__) . '/MarketplaceWebServiceProducts_Exception.php');
         return new MarketplaceWebServiceProducts_Exception($exProps);
     }
 
@@ -1150,7 +1157,7 @@ class MarketplaceWebServiceProducts_Client implements MarketplaceWebServiceProdu
         $response = curl_exec($ch);
 
         if($response === false) {
-            require_once (dirname(__FILE__) . '/Exception.php');
+            //require_once(dirname(__FILE__) . '/MarketplaceWebServiceProducts_Exception.php');
             $exProps["Message"] = curl_error($ch);
             $exProps["ErrorType"] = "HTTP";
             curl_close($ch);
@@ -1202,7 +1209,7 @@ class MarketplaceWebServiceProducts_Client implements MarketplaceWebServiceProdu
         
         //If the body is null here then we were unable to parse the response and will throw an exception
         if($body == null){
-            require_once (dirname(__FILE__) . '/Exception.php');
+            //require_once(dirname(__FILE__) . '/MarketplaceWebServiceProducts_Exception.php');
             $exProps["Message"] = "Failed to parse valid HTTP response (" . $response . ")";
             $exProps["ErrorType"] = "HTTP";
             throw new MarketplaceWebServiceProducts_Exception($exProps);
@@ -1266,7 +1273,7 @@ class MarketplaceWebServiceProducts_Client implements MarketplaceWebServiceProdu
             }
         }
  
-        require_once(dirname(__FILE__) . '/Model/ResponseHeaderMetadata.php');
+        //require_once(dirname(__FILE__) . '/Model/MarketplaceWebServiceProducts_Model_ResponseHeaderMetadata.php');
         return new MarketplaceWebServiceProducts_Model_ResponseHeaderMetadata(
           $headers['x-mws-request-id'],
           $headers['x-mws-response-context'],

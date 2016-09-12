@@ -20,7 +20,7 @@
 /**
  *  @see MarketplaceWebServiceProducts_Interface
  */
-require_once (dirname(__FILE__) . '/Interface.php'); 
+require_once(dirname(__FILE__) . '/MarketplaceWebServiceProducts_Interface.php');
 
 class MarketplaceWebServiceProducts_Mock implements MarketplaceWebServiceProducts_Interface
 {
@@ -158,7 +158,7 @@ class MarketplaceWebServiceProducts_Mock implements MarketplaceWebServiceProduct
      */
     public function getMatchingProductForId($request)
     {
-        require_once (dirname(__FILE__) . '/Model/GetMatchingProductForIdResponse.php');
+        require_once(dirname(__FILE__) . '/Model/MarketplaceWebServiceProducts_Model_GetMatchingProductForIdResponse.php');
         return MarketplaceWebServiceProducts_Model_GetMatchingProductForIdResponse::fromXML($this->_invoke('GetMatchingProductForId'));
     }
 

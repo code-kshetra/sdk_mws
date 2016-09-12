@@ -16,95 +16,95 @@
  * Library Version: 2016-06-01
  * Generated: Mon Jun 13 10:07:56 PDT 2016
  */
-
+namespace Osom\Sdk_Mws\MarketplaceWebServiceProducts\Model;
 /**
  *  @see MarketplaceWebServiceProducts_Model
  */
 
-require_once (dirname(__FILE__) . '/../Model.php');
-
+//require_once(dirname(__FILE__) . '/../MarketplaceWebServiceProducts_Model.php');
+use Osom\Sdk_Mws\MarketplaceWebServiceProducts\MarketplaceWebServiceProducts_Model;
 
 /**
- * MarketplaceWebServiceProducts_Model_SalesRankList
+ * MarketplaceWebServiceProducts_Model_IdListType
  * 
  * Properties:
  * <ul>
  * 
- * <li>SalesRank: array</li>
+ * <li>Id: array</li>
  *
  * </ul>
  */
 
- class MarketplaceWebServiceProducts_Model_SalesRankList extends MarketplaceWebServiceProducts_Model {
+ class MarketplaceWebServiceProducts_Model_IdListType extends MarketplaceWebServiceProducts_Model {
 
     public function __construct($data = null)
     {
     $this->_fields = array (
-    'SalesRank' => array('FieldValue' => array(), 'FieldType' => array('MarketplaceWebServiceProducts_Model_SalesRankType')),
+    'Id' => array('FieldValue' => array(), 'FieldType' => array('string')),
     );
     parent::__construct($data);
     }
 
     /**
-     * Get the value of the SalesRank property.
+     * Get the value of the Id property.
      *
-     * @return List<SalesRankType> SalesRank.
+     * @return List<String> Id.
      */
-    public function getSalesRank()
+    public function getId()
     {
-        if ($this->_fields['SalesRank']['FieldValue'] == null)
+        if ($this->_fields['Id']['FieldValue'] == null)
         {
-            $this->_fields['SalesRank']['FieldValue'] = array();
+            $this->_fields['Id']['FieldValue'] = array();
         }
-        return $this->_fields['SalesRank']['FieldValue'];
+        return $this->_fields['Id']['FieldValue'];
     }
 
     /**
-     * Set the value of the SalesRank property.
+     * Set the value of the Id property.
      *
-     * @param array salesRank
+     * @param array id
      * @return this instance
      */
-    public function setSalesRank($value)
+    public function setId($value)
     {
         if (!$this->_isNumericArray($value)) {
             $value = array ($value);
         }
-        $this->_fields['SalesRank']['FieldValue'] = $value;
+        $this->_fields['Id']['FieldValue'] = $value;
         return $this;
     }
 
     /**
-     * Clear SalesRank.
+     * Clear Id.
      */
-    public function unsetSalesRank()
+    public function unsetId()
     {
-        $this->_fields['SalesRank']['FieldValue'] = array();
+        $this->_fields['Id']['FieldValue'] = array();
     }
 
     /**
-     * Check to see if SalesRank is set.
+     * Check to see if Id is set.
      *
-     * @return true if SalesRank is set.
+     * @return true if Id is set.
      */
-    public function isSetSalesRank()
+    public function isSetId()
     {
-                return !empty($this->_fields['SalesRank']['FieldValue']);
+                return !empty($this->_fields['Id']['FieldValue']);
             }
 
     /**
-     * Add values for SalesRank, return this.
+     * Add values for Id, return this.
      *
-     * @param salesRank
+     * @param id
      *             New values to add.
      *
      * @return This instance.
      */
-    public function withSalesRank()
+    public function withId()
     {
-        foreach (func_get_args() as $SalesRank)
+        foreach (func_get_args() as $Id)
         {
-            $this->_fields['SalesRank']['FieldValue'][] = $SalesRank;
+            $this->_fields['Id']['FieldValue'][] = $Id;
         }
         return $this;
     }
