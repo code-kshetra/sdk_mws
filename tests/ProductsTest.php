@@ -16,6 +16,9 @@ class ProductsTest extends PHPUnit_Framework_TestCase
         $operation = 'GetMatchingProductForId';
         $products->createRequestProduct($operation,$parameters);
         $response = json_decode($products->createRequestProduct($operation,$parameters));
+        //var_dump($response->GetMatchingProductForIdResult->Error);
+        //var_dump($response->GetMatchingProductForIdResult->Products);
+        //die();
         $this->assertTrue($response->success);
     }
 }

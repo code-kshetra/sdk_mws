@@ -16,12 +16,13 @@
  * Library Version: 2016-06-01
  * Generated: Mon Jun 13 10:07:56 PDT 2016
  */
-
+namespace Osom\Sdk_Mws\MarketplaceWebServiceProducts\Model;
 /**
  *  @see MarketplaceWebServiceProducts_Model
  */
 
-require_once(dirname(__FILE__) . '/../MarketplaceWebServiceProducts_Model.php');
+//require_once(dirname(__FILE__) . '/../MarketplaceWebServiceProducts_Model.php');
+use Osom\Sdk_Mws\MarketplaceWebServiceProducts\MarketplaceWebServiceProducts_Model;
 
 
 /**
