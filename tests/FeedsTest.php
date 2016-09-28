@@ -53,7 +53,7 @@ class FeedsTest extends PHPUnit_Framework_TestCase
                 "ProductData_Color" => "Negro",
                 "ProductData_VariationTheme" => "SizeColor",
                 "ProductData_Gender" => "mujeres"
-            ]*/
+            ]
             [
                 "OperationType" => "Update",
                 "SKU" => "FL039SH43RUQDFMX-312920",
@@ -74,15 +74,55 @@ class FeedsTest extends PHPUnit_Framework_TestCase
                 "ProductData_VariationTheme" => "SizeColor",
                 "ProductData_Gender" => "mujeres"
             ]
+            [
+                "OperationType" => "Update",
+                "SKU" => "FL039SH43RUQDFMX-312919",
+                "DescriptionData_Title" => "Example Product Title",
+                "DescriptionData_Brand" => "Example Product Brand",
+                "DescriptionData_Description" => "This is an example product description",
+                "DescriptionData_BulletPoint" => ["Example Bullet Point 1","Example Bullet Point 2","Example Bullet Point 3"],
+                "DescriptionData_Currency" => "MXN",
+                "DescriptionData_Msrp" => "200.00",
+                "DescriptionData_Manufacturer" => "Example Product Manufacturer",
+                "DescriptionData_MfrPartNumber" => "00000000000000000",
+                "DescriptionData_ItemType" => "example-item-type",
+                "ProductData_Parentage" => "child",
+                "ProductData_Size" => "34",
+                "ProductData_Color" => "Negro",
+                "ProductData_VariationTheme" => "SizeColor",
+                "ProductData_Gender" => "womens"
+            ]*/
+            [
+                "OperationType" => "Update",
+                "SKU" => "FL039SH43RUQDFMX-312920",
+                "DescriptionData_Title" => "Example Product Title",
+                "DescriptionData_Brand" => "Example Product Brand",
+                "DescriptionData_Description" => "This is an example product description",
+                "DescriptionData_BulletPoint" => ["Example Bullet Point 1","Example Bullet Point 2","Example Bullet Point 3"],
+                "DescriptionData_Currency" => "MXN",
+                "DescriptionData_Msrp" => "250.00",
+                "DescriptionData_Manufacturer" => "Example Product Manufacturer",
+                "DescriptionData_MfrPartNumber" => "00000000000000000",
+                "DescriptionData_ItemType" => "example-item-type",
+                "ProductData_ClothingType" => "Shoes",
+                "ProductData_Parentage" => "child",
+                "ProductData_Size" => "34",
+                "ProductData_Color" => "Negro",
+                "ProductData_VariationTheme" => "SizeColor",
+                "ProductData_Gender" => "mujeres"
+            ]
         ];
 
         (object)$data = json_decode(json_encode($data), FALSE);
-        $data = $mapping->buildRequestFeed($data,'ProductShoes');
+        //$data = $mapping->buildRequestFeed($data,'Product');
+        //$data = $mapping->buildRequestFeed($data,'ProductOwnBrand');
+        //$data = $mapping->buildRequestFeed($data,'ProductShoes');
+        $data = $mapping->buildRequestFeed($data,'ProductShoesOwnBrand');
 
         $feed = $mapping->createXmlfromJson($data);
 
-        var_dump($feed);
-        die();
+        //var_dump($feed);
+        //die();
         $feedType = '_POST_PRODUCT_DATA_';
         $operation = 'SubmitFeed';
         $response = json_decode($feeds->createRequestFeed($feed,$feedType,$operation));

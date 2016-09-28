@@ -91,6 +91,79 @@ class DummieProductRequest
             ]
         ];
 
+    private $dataProductOwnBrandStructure =
+        [
+            "MessageID" => "?",
+            "OperationType" => "Update|Delete|PartialUpdate",
+            "Product" => [
+                "SKU" => "?",
+                "ProductTaxCode" => "A_GEN_NOTAX",
+                "DescriptionData" => [
+                    "Title" => "?",
+                    "Brand" =>"?",
+                    "Description" => "?",
+                    "BulletPoint" => "?",
+                    "MSRP" => [
+                        "attribute" => ["currency"=>"MXN"],
+                        "value"=>"?",
+                    ],
+                    "Manufacturer" => "?",
+                    "MfrPartNumber" => "?",
+                    "ItemType" => "?"
+                ],
+                "ProductData" => [
+                    "ClothingAccessories" => [
+                        "VariationData" => [
+                            "Parentage" => "parent|child",
+                            "Size" => "?",
+                            "Color" => "?",
+                            "VariationTheme" => "Size|Color|SizeColor|Color-Itempackagequantity|Color-Material|Color-Patternname|ColorSize|Itempackagequantity|Itempackagequantity-Color|Itempackagequantity-Material|Itempackagequantity-Size|Material|Material-Color|Material-Patternname|Material-Size|Patternname|Patternname-Color|Patternname-Material|Patternname-Size|Size-Material|Size-Patternname|Cupsize|Cupsize-Color|Cupsize-Color-Size|Cupsize-Size"
+                        ],
+                        "ClassificationData" => [
+                            "Department" => "?"
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+    private $dataProductShoesOwnBrandStructure =
+        [
+            "MessageID" => "?",
+            "OperationType" => "Update|Delete|PartialUpdate",
+            "Product" => [
+                "SKU" => "?",
+                "ProductTaxCode" => "A_GEN_NOTAX",
+                "DescriptionData" => [
+                    "Title" => "?",
+                    "Brand" =>"?",
+                    "Description" => "?",
+                    "BulletPoint" => "?",
+                    "MSRP" => [
+                        "attribute" => ["currency"=>"MXN"],
+                        "value"=>"?",
+                    ],
+                    "Manufacturer" => "?",
+                    "MfrPartNumber" => "?",
+                    "ItemType" => "?"
+                ],
+                "ProductData" => [
+                    "Shoes" => [
+                        "ClothingType" => "Accessory|Bag|Shoes|ShoeAccessory|Handbag|Eyewear",
+                        "VariationData" => [
+                            "Parentage" => "parent|child",
+                            "Size" => "?",
+                            "Color" => "?",
+                            "VariationTheme" => "Size|Color|SizeColor|Color-Itempackagequantity|Color-Material|Color-Patternname|ColorSize|Itempackagequantity|Itempackagequantity-Color|Itempackagequantity-Material|Itempackagequantity-Size|Material|Material-Color|Material-Patternname|Material-Size|Patternname|Patternname-Color|Patternname-Material|Patternname-Size|Size-Material|Size-Patternname|Cupsize|Cupsize-Color|Cupsize-Color-Size|Cupsize-Size"
+                        ],
+                        "ClassificationData" => [
+                            "Department" => "?"
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
     public function __construct(){
         return $this;
     }
@@ -101,5 +174,13 @@ class DummieProductRequest
 
     public function getStructureShoes(){
         return $this->dataProductShoesStructure;
+    }
+
+    public function getStructureOwnBrand(){
+        return $this->dataProductOwnBrandStructure;
+    }
+
+    public function getStructureShoesOwnBrand(){
+        return $this->dataProductShoesOwnBrandStructure;
     }
 }
