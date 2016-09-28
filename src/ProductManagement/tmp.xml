@@ -4,21 +4,39 @@
         <DocumentVersion>1.01</DocumentVersion>
         <MerchantIdentifier>A140MHXDLIVF48</MerchantIdentifier>
     </Header>
-    <MessageType>OrderAcknowledgement</MessageType>
+    <MessageType>Product</MessageType>
     <PurgeAndReplace>false</PurgeAndReplace>
     <Message>
         <MessageID>1</MessageID>
-        <OrderAcknowledgement>
-            <AmazonOrderID>050-1234567-1234567</AmazonOrderID>
-            <StatusCode>Failed</StatusCode>
-            <Item>
-                <AmazonOrderItemCode>1</AmazonOrderItemCode>
-                <CancelReason>NoInventory</CancelReason>
-            </Item>
-            <Item>
-                <AmazonOrderItemCode>2</AmazonOrderItemCode>
-                <CancelReason>NoInventory</CancelReason>
-            </Item>
-        </OrderAcknowledgement>
+        <OperationType>Update</OperationType>
+        <Product>
+            <SKU>FL039SH43RUQDFMX-312919</SKU>
+            <ProductTaxCode>A_GEN_NOTAX</ProductTaxCode>
+            <DescriptionData>
+                <Title>Example Product Title</Title>
+                <Brand>Example Product Brand</Brand>
+                <Description>This is an example product description</Description>
+                <BulletPoint>Example Bullet Point 1</BulletPoint>
+                <BulletPoint>Example Bullet Point 2</BulletPoint>
+                <BulletPoint>Example Bullet Point 3</BulletPoint>
+                <MSRP currency="MXN">200.00</MSRP>
+                <Manufacturer>Example Product Manufacturer</Manufacturer>
+                <MfrPartNumber>00000000000000000</MfrPartNumber>
+                <ItemType>example-item-type</ItemType>
+            </DescriptionData>
+            <ProductData>
+                <ClothingAccessories>
+                    <VariationData>
+                        <Parentage>child</Parentage>
+                        <Size>34</Size>
+                        <Color>Negro</Color>
+                        <VariationTheme>SizeColor</VariationTheme>
+                    </VariationData>
+                    <ClassificationData>
+                        <Department>womens</Department>
+                    </ClassificationData>
+                </ClothingAccessories>
+            </ProductData>
+        </Product>
     </Message>
 </AmazonEnvelope>
