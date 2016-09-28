@@ -16,7 +16,8 @@ class FeedsTest extends PHPUnit_Framework_TestCase
         $feeds = new Feeds();
 
         $data = [
-            /*[
+            [
+                "Product_FeedType" => "Product",
                 "OperationType" => "Update",
                 "SKU" => "FL039SH43RUQDFMX-312919",
                 "StandarProductID_Type" => "EAN",
@@ -36,6 +37,7 @@ class FeedsTest extends PHPUnit_Framework_TestCase
                 "ProductData_Gender" => "mujeres"
             ],
             [
+                "Product_FeedType" => "Product",
                 "OperationType" => "Update",
                 "SKU" => "FL039SH43RUQDFMX-312920",
                 "StandarProductID_Type" => "EAN",
@@ -53,8 +55,9 @@ class FeedsTest extends PHPUnit_Framework_TestCase
                 "ProductData_Color" => "Negro",
                 "ProductData_VariationTheme" => "SizeColor",
                 "ProductData_Gender" => "mujeres"
-            ]
+            ],
             [
+                "Product_FeedType" => "ProductShoes",
                 "OperationType" => "Update",
                 "SKU" => "FL039SH43RUQDFMX-312920",
                 "StandarProductID_Type" => "EAN",
@@ -73,8 +76,9 @@ class FeedsTest extends PHPUnit_Framework_TestCase
                 "ProductData_Color" => "Negro",
                 "ProductData_VariationTheme" => "SizeColor",
                 "ProductData_Gender" => "mujeres"
-            ]
+            ],
             [
+                "Product_FeedType" => "ProductOwnBrand",
                 "OperationType" => "Update",
                 "SKU" => "FL039SH43RUQDFMX-312919",
                 "DescriptionData_Title" => "Example Product Title",
@@ -91,8 +95,9 @@ class FeedsTest extends PHPUnit_Framework_TestCase
                 "ProductData_Color" => "Negro",
                 "ProductData_VariationTheme" => "SizeColor",
                 "ProductData_Gender" => "womens"
-            ]*/
+            ],
             [
+                "Product_FeedType" => "ProductShoesOwnBrand",
                 "OperationType" => "Update",
                 "SKU" => "FL039SH43RUQDFMX-312920",
                 "DescriptionData_Title" => "Example Product Title",
@@ -114,15 +119,15 @@ class FeedsTest extends PHPUnit_Framework_TestCase
         ];
 
         (object)$data = json_decode(json_encode($data), FALSE);
-        //$data = $mapping->buildRequestFeed($data,'Product');
+        $data = $mapping->buildRequestFeed($data,'Product');
         //$data = $mapping->buildRequestFeed($data,'ProductOwnBrand');
         //$data = $mapping->buildRequestFeed($data,'ProductShoes');
-        $data = $mapping->buildRequestFeed($data,'ProductShoesOwnBrand');
+        //$data = $mapping->buildRequestFeed($data,'ProductShoesOwnBrand');
 
         $feed = $mapping->createXmlfromJson($data);
 
-        //var_dump($feed);
-        //die();
+        var_dump($feed);
+        die();
         $feedType = '_POST_PRODUCT_DATA_';
         $operation = 'SubmitFeed';
         $response = json_decode($feeds->createRequestFeed($feed,$feedType,$operation));

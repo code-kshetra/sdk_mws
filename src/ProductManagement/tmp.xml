@@ -11,6 +11,115 @@
         <OperationType>Update</OperationType>
         <Product>
             <SKU>FL039SH43RUQDFMX-312919</SKU>
+            <StandardProductID>
+                <Type>EAN</Type>
+                <Value>7500421081204</Value>
+            </StandardProductID>
+            <ProductTaxCode>A_GEN_NOTAX</ProductTaxCode>
+            <DescriptionData>
+                <Title>Example Product Title</Title>
+                <Brand>Example Product Brand</Brand>
+                <Description>This is an example product description</Description>
+                <BulletPoint>Example Bullet Point 1</BulletPoint>
+                <BulletPoint>Example Bullet Point 2</BulletPoint>
+                <BulletPoint>Example Bullet Point 3</BulletPoint>
+                <MSRP currency="MXN">200.00</MSRP>
+                <Manufacturer>Example Product Manufacturer</Manufacturer>
+                <ItemType>example-item-type</ItemType>
+            </DescriptionData>
+            <ProductData>
+                <ClothingAccessories>
+                    <VariationData>
+                        <Parentage>child</Parentage>
+                        <Size>34</Size>
+                        <Color>Negro</Color>
+                        <VariationTheme>SizeColor</VariationTheme>
+                    </VariationData>
+                    <ClassificationData>
+                        <Department>mujeres</Department>
+                    </ClassificationData>
+                </ClothingAccessories>
+            </ProductData>
+        </Product>
+    </Message>
+    <Message>
+        <MessageID>2</MessageID>
+        <OperationType>Update</OperationType>
+        <Product>
+            <SKU>FL039SH43RUQDFMX-312920</SKU>
+            <StandardProductID>
+                <Type>EAN</Type>
+                <Value>7500421081205</Value>
+            </StandardProductID>
+            <ProductTaxCode>A_GEN_NOTAX</ProductTaxCode>
+            <DescriptionData>
+                <Title>Example Product Title</Title>
+                <Brand>Example Product Brand</Brand>
+                <Description>This is an example product description</Description>
+                <BulletPoint>Example Bullet Point 1</BulletPoint>
+                <BulletPoint>Example Bullet Point 2</BulletPoint>
+                <BulletPoint>Example Bullet Point 3</BulletPoint>
+                <MSRP currency="MXN">250.00</MSRP>
+                <Manufacturer>Example Product Manufacturer</Manufacturer>
+                <ItemType>example-item-type</ItemType>
+            </DescriptionData>
+            <ProductData>
+                <ClothingAccessories>
+                    <VariationData>
+                        <Parentage>child</Parentage>
+                        <Size>34</Size>
+                        <Color>Negro</Color>
+                        <VariationTheme>SizeColor</VariationTheme>
+                    </VariationData>
+                    <ClassificationData>
+                        <Department>mujeres</Department>
+                    </ClassificationData>
+                </ClothingAccessories>
+            </ProductData>
+        </Product>
+    </Message>
+    <Message>
+        <MessageID>3</MessageID>
+        <OperationType>Update</OperationType>
+        <Product>
+            <SKU>FL039SH43RUQDFMX-312920</SKU>
+            <StandardProductID>
+                <Type>EAN</Type>
+                <Value>7500421081205</Value>
+            </StandardProductID>
+            <ProductTaxCode>A_GEN_NOTAX</ProductTaxCode>
+            <DescriptionData>
+                <Title>Example Product Title</Title>
+                <Brand>Example Product Brand</Brand>
+                <Description>This is an example product description</Description>
+                <BulletPoint>Example Bullet Point 1</BulletPoint>
+                <BulletPoint>Example Bullet Point 2</BulletPoint>
+                <BulletPoint>Example Bullet Point 3</BulletPoint>
+                <MSRP currency="MXN">250.00</MSRP>
+                <Manufacturer>Example Product Manufacturer</Manufacturer>
+                <ItemType>example-item-type</ItemType>
+            </DescriptionData>
+            <ProductData>
+                <Shoes>
+                    <ClothingType>Shoes</ClothingType>
+                    <VariationData>
+                        <Parentage>child</Parentage>
+                        <Size>34</Size>
+                        <Color>Negro</Color>
+                        <VariationTheme>SizeColor</VariationTheme>
+                    </VariationData>
+                    <ClassificationData>
+                        <Department>mujeres</Department>
+                    </ClassificationData>
+                </Shoes>
+            </ProductData>
+        </Product>
+    </Message>
+    <Message>
+        <MessageID>4</MessageID>
+        <OperationType>Update</OperationType>
+        <Product>
+            <SKU>FL039SH43RUQDFMX-312919</SKU>
             <ProductTaxCode>A_GEN_NOTAX</ProductTaxCode>
             <DescriptionData>
                 <Title>Example Product Title</Title>
@@ -36,6 +145,40 @@
                         <Department>womens</Department>
                     </ClassificationData>
                 </ClothingAccessories>
+            </ProductData>
+        </Product>
+    </Message>
+    <Message>
+        <MessageID>5</MessageID>
+        <OperationType>Update</OperationType>
+        <Product>
+            <SKU>FL039SH43RUQDFMX-312920</SKU>
+            <ProductTaxCode>A_GEN_NOTAX</ProductTaxCode>
+            <DescriptionData>
+                <Title>Example Product Title</Title>
+                <Brand>Example Product Brand</Brand>
+                <Description>This is an example product description</Description>
+                <BulletPoint>Example Bullet Point 1</BulletPoint>
+                <BulletPoint>Example Bullet Point 2</BulletPoint>
+                <BulletPoint>Example Bullet Point 3</BulletPoint>
+                <MSRP currency="MXN">250.00</MSRP>
+                <Manufacturer>Example Product Manufacturer</Manufacturer>
+                <MfrPartNumber>00000000000000000</MfrPartNumber>
+                <ItemType>example-item-type</ItemType>
+            </DescriptionData>
+            <ProductData>
+                <Shoes>
+                    <ClothingType>Shoes</ClothingType>
+                    <VariationData>
+                        <Parentage>child</Parentage>
+                        <Size>34</Size>
+                        <Color>Negro</Color>
+                        <VariationTheme>SizeColor</VariationTheme>
+                    </VariationData>
+                    <ClassificationData>
+                        <Department>mujeres</Department>
+                    </ClassificationData>
+                </Shoes>
             </ProductData>
         </Product>
     </Message>
